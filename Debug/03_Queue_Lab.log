@@ -1,0 +1,18 @@
+﻿  main.cpp
+c:\users\andy\documents\cse_274\03_queue_lab\ArrayQueue.ipp(61): warning C4018: '<' : signed/unsigned mismatch
+          c:\users\andy\documents\cse_274\03_queue_lab\ArrayQueue.ipp(59) : while compiling class template member function 'void ArrayQueue<T>::grow(void)'
+          with
+          [
+              T=int
+          ]
+          c:\users\andy\documents\cse_274\03_queue_lab\ArrayQueue.ipp(31) : while compiling class template member function 'void ArrayQueue<T>::add(T)'
+          with
+          [
+              T=int
+          ]
+          main.cpp(7) : see reference to class template instantiation 'ArrayQueue<T>' being compiled
+          with
+          [
+              T=int
+          ]
+  03_Queue_Lab.vcxproj -> C:\Users\Andy\Documents\CSE_274\03_Queue_Lab\Debug\03_Queue_Lab.exe
