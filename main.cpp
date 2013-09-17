@@ -27,7 +27,7 @@ void testAddRemove(ArrayQueue<int>& testQueue){
   int y = testQueue.remove();
   int z = testQueue.remove();
   if(x != 5 || y != 10 || z != 4){
-    std::cout << "ERROR: Expected 5, 10, 4, but got " << x <<", " << y << ", " << "z" << std::endl;
+    std::cout << "ERROR: Expected 5, 10, 4, but got " << x <<", " << y << ", " << z << std::endl;
   } else {
     std::cout << "SUCCESS: 3 added items came back out in the correct order" << std::endl;
   }

@@ -14,31 +14,60 @@
 // tell the compiler that this ArrayQueue() method belongs to the
 // ArrayQueue<T> class.
 template <class T>
-ArrayQueue<T>::ArrayQueue(){
+ArrayQueue<T>::ArrayQueue()
+{
+	backingArray = new T[START_SIZE];
+	front = 0;
+	numItems = 0;
+	backingArraySize = START_SIZE;
+}
+
+template <class T>
+ArrayQueue<T>::~ArrayQueue()
+{
+	delete[] backingArray;
 
 }
 
 template <class T>
-ArrayQueue<T>::~ArrayQueue() {
-
+void ArrayQueue<T>::add(T toAdd)
+{
+	if (numItems == backingArraySize)
+		grow();
+	backingArray[(front+numItems)%backingArraySize] = toAdd;
+	numItems += 1;
 }
 
 template <class T>
-void ArrayQueue<T>::add(T toAdd){
-
+T ArrayQueue<T>::remove()
+{
+ if(numItems == 0)
+	throw (std::string)"Empty Array!!";
+ 
+  T temp = backingArray[front];
+  front = (front + 1) % backingArraySize;
+  numItems -= 1;
+  return temp;
 }
 
 template <class T>
-T ArrayQueue<T>::remove(){
-  
+unsigned long ArrayQueue<T>::getNumItems()
+{
+	return numItems;
 }
 
 template <class T>
-unsigned long ArrayQueue<T>::getNumItems(){
-
-}
-
-template <class T>
-void ArrayQueue<T>::grow(){
-
+void ArrayQueue<T>::grow()
+{
+	//This is a combination of my own code and the code from the book "http://opendatastructures.org/ods-cpp/2_3_Array_Based_Queue.html"
+	
+	T* temp = new T[backingArraySize*2];
+	for(unsigned long i = 0; i < backingArraySize; i++)
+	{
+		temp[i] = backingArray[(front + i)%backingArraySize];
+	}
+	delete[] backingArray;
+	backingArray = temp;
+	backingArraySize *= 2;
+	front = 0;
 }
