@@ -15,30 +15,56 @@
 // ArrayQueue<T> class.
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
-
+	backingArray = new T[START_SIZE];
+	front = backingArray[0];
+	numItems = 0;
+	backingArraySize = START_SIZE;
 }
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	delete[] backingArray;
+	delete front;
+	delete numItems;
+	delete backingArraySize;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-
+	if (numItems == backingArraySize) {
+		grow();
+	}
+	backingArray[(front + numItems) % backingArraySize] = toAdd;
+	numItems++;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
+	if (numItems == 0) {
+		throw (std::string) "Error: Queue is empty, nothing to remove!";
+	}
+	T removedValue = backingArray[front];
+	front = (front + 1) % backingArraySize;
+	numItems--;
+	return removedValue;
 }
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-
+	return numItems;
 }
 
 template <class T>
 void ArrayQueue<T>::grow(){
-
+	T* newBackingArray = new T[2 * backingArraySize];
+	if (newBackingArray == NULL) {
+		throw (std::string) "Error: Cannot complete add operation.";
+	}
+	for (int i = 0; i < numItems; i++) {
+		newBackingArray[i] = backingArray[(front + i) % backingArraySize];
+	}
+	backingArray = newBackingArray;
+	front = 0;
+	backingArraySize = backingArraySize * 2;
+	delete[] backingArray;
 }
