@@ -29,23 +29,29 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. Remove definitely has a constant O-efficiency, since all the method has to do is store a value in a space in memory, but it does not have to move any other values.
+2. Add, just as remove, is constant as well, only writing a value without moving any other values
+3. The only way grow can be used is if backingArraySize == numItems, and backingArraySize is doubled everytime it is called.
+4. Grow is linear due to the fact that the amount of operations grows linearly the numbers of items increase. Although grow in reality has O-effiency of n^2, grow gets called less and less the more it is called, giving it an O-effieciency of n. 
+5. Grow and the destructor make sure to delete the unsused array.
+6. getNumItems literally only has to return one variable... it definitely has a constant O-efficiency.
+7. Remove throws a string when there is nothing to remove. Add has no need for a thrown string.
+8. Array is used circularly. n (the next spot to add at) and front both wrap around to the front when they reach the end of the array.
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+Our add, grow, and getNumItems methods would mostly stay the same. However in add there would be no need to wrap around. Remove would be different in that it would remove the last item added, and then move n (the next index to add at) would decrease by one rather than increase. 
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+First think about what you are doing through a real life example. It helps to visualize what you are doing before you jump into the programming.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+class ArrayQueue: public Queue
 
 #### 5. What is the purpose of "templates" in C++?
+To tell C++ that there are several data types that we may use in our data structure, so we will use the class "T" which may represent may diffent classes.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+int* array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+To free up memory when an object is no longer needed. Java does this automatically for us, thus we don't need a destructor.
