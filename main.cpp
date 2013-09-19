@@ -16,7 +16,7 @@ void testCtor(ArrayQueue<int>& testQueue){
 void testAddRemove(ArrayQueue<int>& testQueue){
   testQueue.add(5);
   testQueue.add(10);
-  testQueue.add(4);
+    testQueue.add(4);
   if(testQueue.getNumItems() == 3){
     std::cout << "SUCCESS: 3 items added" << std::endl;
   } else {
