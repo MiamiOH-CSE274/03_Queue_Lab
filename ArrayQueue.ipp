@@ -14,31 +14,71 @@
 // tell the compiler that this ArrayQueue() method belongs to the
 // ArrayQueue<T> class.
 template <class T>
-ArrayQueue<T>::ArrayQueue(){
 
+// constructor
+ArrayQueue<T>::ArrayQueue(){
+	
+	front = 0;
+	numItems =0;
+	backingArraySize = START_SIZE;
+
+	// new operator allowcate memory for array of type T (T will be decide at run time)
+	backingArray = new T[backingArraySize];
+	
 }
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
 
+	//the use of [] when destroying an array allocated with new
+	delete[] backingArray;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
 
+	// if numItems == backingArraySize, grow the array
+		
+		if(numItems == backingArraySize)
+				grow();
+		
+		backingArray[(front+numItems)%backingArraySize] = toAdd;
+		numItems++;
+		
+		
 }
+
+
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
+	// throw is not a method, it is a special keyword. 
+	// if you want to throw a string, you have to cast back to string
+	if(numItems==0){
+	throw (std::string)"Sorry, the array is empty";
+	}
+	T removedItem = backingArray[front];
+	front = (front+ 1)%backingArraySize;
+	numItems--;
+	return removedItem;
+
 }
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-
+	return numItems;
 }
 
 template <class T>
 void ArrayQueue<T>::grow(){
-
+	T* newBackingArray = new T[backingArraySize*2];
+	if(newBackingArray == NULL)
+		throw (std::string) "Unable to add input item. Your computer may out of memory ";
+	for(unsigned int i =0; i<backingArraySize; i++){
+		newBackingArray[front+i] = backingArray[(front + i) % backingArraySize];
+	}
+	backingArraySize = backingArraySize*2;
+	delete[] backingArray;
+	backingArray = newBackingArray;
+	
 }
