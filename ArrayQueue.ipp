@@ -26,14 +26,28 @@ template <class T>
 ArrayQueue<T>::~ArrayQueue()
 {
 	delete[] backingArray;
-
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd)
 {
-	if (numItems == backingArraySize)
-		grow();
+	try
+	{
+		try
+		{
+			if (numItems == backingArraySize)
+				grow();
+		}
+		catch(...)
+		{
+			throw;
+		}
+	}
+	catch(...)
+	{
+		cout << "Out of Memory!"
+		break;
+	}
 	backingArray[(front+numItems)%backingArraySize] = toAdd;
 	numItems += 1;
 }
