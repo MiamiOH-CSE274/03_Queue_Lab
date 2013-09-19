@@ -92,6 +92,7 @@ int main(){
   testAroundTheHorn(testQueue);
   testGrow(testQueue);
   testRemoveException(testQueue);
+  std::cin.get();
 
   return 0;
 }
