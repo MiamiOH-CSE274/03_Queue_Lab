@@ -1,0 +1,92 @@
+
+
+class stack
+{
+      int stk[500]; top;
+
+      public:
+
+         stack()
+      
+           {
+
+             top = -1;
+
+	   }
+           
+	   void push(int x)
+	     {
+               if(top > 500)
+
+	       {
+                   cout<< "The stack is Full";
+		   return;
+
+	       }
+
+	       stk[++top] = x;
+               count<<"SUCCESSFULLY INSERTED:"<<x;
+              }
+
+	      void pop(){
+                  
+                  if(top < 0)
+		  {
+                      cout<<"The stack is empty";
+		      return;
+                  }
+
+		  cout<<"The deleted element is : " << stk[top--];
+ 
+
+
+	      }
+
+
+              void display()
+	      {
+                    if(top < 0)
+		    {
+		    cout<<"The stack is empty":
+		    return;
+
+		    }
+
+		    for(int i = top;i>=0;i--)
+		    {
+		    cout<<stk[i]<<" ";
+		    }
+
+		    }
+   
+     int main()
+     {
+
+     int ch;
+     stack st;
+
+     while(1)
+
+     {
+
+          cout<<"\n Press 1 to push \n press 2 to pop \n press 3 to display \n press 4 to Exit";
+	  cin>>ch;
+
+          switch(ch)
+	     {
+
+         case 1: cout<<"Eneter the element: ";
+	       cin>>ch;
+	       
+	       case 2:st.pop();
+	            break;
+
+	       case 3:st.display();
+	            break;
+	       case 4:
+	          exit(0);
+
+	      }
+     }
+
+ }

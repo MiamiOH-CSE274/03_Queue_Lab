@@ -1,0 +1,97 @@
+
+
+class queue 
+
+
+{
+    int queue[500],rear,front;
+
+    public:
+
+       queue()
+     {
+         rear = front = -1;
+     }
+
+     void inser(int x)
+      {
+
+          if(rear > 500 )
+             {
+                   cout<< "The queue is full;
+                   front = rear = -1;
+    
+             { 
+
+             queue[1 + rear] = x;
+             cout<< "Successfully inserted : " << x;
+       }
+
+        void del()
+         {
+             if(front == rear)
+             {
+                    cout << "The queue is empty";
+                    return
+             }
+
+             cout<< "Successfully deleted: " <<queue[++front]
+
+          }
+             
+
+           void display()
+
+           {
+                
+
+               if(front == rear)
+               {
+
+                   cout << "The queue is empty";
+                   return;
+            }
+          
+            for(int i = front+1;i<=rear;i++)
+            cout<<queue[i] << " ";
+
+           }
+
+}
+
+
+int main
+{
+     int ch;
+     queue qu;
+
+     while(1)
+
+     {
+        cout << "\n press 1 to insert \ n Press 2 to Delete \n Press 3 to Display \n press 4 to Exit,"
+
+        cin>>ch;
+        switch(ch)
+
+        {
+
+           case 1 : cout<<"Enter the element to insert:";
+
+                 cin>>ch;
+                 qu.insert(ch);
+                 break;
+
+           case 2 : qu.del();
+                 break;
+
+           case 3: qu.display();
+                  break;
+
+           case 4: exit(0);
+                 break;
+         }
+         return (0);
+
+      }
+
+}
