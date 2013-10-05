@@ -24,28 +24,35 @@ Reading
 =======
 "Open Data Structures," Chapter 2, up through section 2.4 (ArrayDequeue). http://opendatastructures.org/ods-cpp/2_Array_Based_Lists.html
 
+Information about the Von Neumann computing model may be helpful. This optional reading is section 2.2 of "Algorithms and Data Structures: A Basic Toolbox" by Melhorn and Sanders. A free copy may be found here: http://www.mpi-inf.mpg.de/~mehlhorn/ftp/Toolbox/Introduction.pdf
+
 Questions
 =========
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. done
+2. done
+3. done
+4. done
+5. done
+6. done
+7. done
+8. done
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+we would only get rid of the variable 'front' because numItems is the end which is the only thing we need to keep track of for a stack (for the add and remove methods). of course the add and remove functions would be altered, but they would still be kept.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+Because we created the remove function, we might as well use it in the destructor. 
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
-
+"#includes.Queue.h"
 #### 5. What is the purpose of "templates" in C++?
-
+The purpose of templates is that we can make the function that operates with generic types. Then we don't have to repeat the code for every type.
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+int* array;
+array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+to deallocate memory. Java has a garbage collector.
