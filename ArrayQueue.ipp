@@ -130,16 +130,15 @@ void ArrayQueue<T>::grow()
 	backingArraySize = 2 * backingArraySize;
 	
 	
-	//Copy the array.
-	backingArray = newArray;
 	
-	//Delete the temporary newArray
+    //Deallocate the original array.
+    delete [] backingArray;
+
+    //Ensure the original array will not be a dangling pointer.
+    backingArray = NULL;
+
+    backingArray = newArray;
 	
-	delete[]newArray;
-	
-	//Set temporary array to be NULL.
-	
-	newArray = NULL;
 	
 
 }
