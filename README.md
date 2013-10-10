@@ -31,14 +31,15 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. done
-2. done
-3. done
-4. done
-5. done
-6. done
-7. done
-8. done
+1. Constant time as none of the lines take more than O(1) time. 
+2. constant time unless grow is called which is then O(n). backingArray[(front+numItems)%backingArraySize]=toAdd;
+  takes constant time as does numItems++.
+3. Grow is only called if items == backingArraySize and the size of the array is doubled.
+4. grow takes O(n) time as it has to loop through and add to the new list.
+5. Does not leak memory as destructor removes everything from the array then deletes the array.
+6. getNumItems just returns numItems so it takes O(1) time.
+7. Add and remove throw exceptions when they are supposed to.
+8. Array is circular, it uses mod to keep the array circular. 
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 we would only get rid of the variable 'front' because numItems is the end which is the only thing we need to keep track of for a stack (for the add and remove methods). of course the add and remove functions would be altered, but they would still be kept.
@@ -47,7 +48,7 @@ we would only get rid of the variable 'front' because numItems is the end which 
 Because we created the remove function, we might as well use it in the destructor. 
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
-"#includes.Queue.h"
+class ArrayQueue : public Queue
 #### 5. What is the purpose of "templates" in C++?
 The purpose of templates is that we can make the function that operates with generic types. Then we don't have to repeat the code for every type.
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
