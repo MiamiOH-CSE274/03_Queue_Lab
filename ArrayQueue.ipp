@@ -14,31 +14,54 @@
 // tell the compiler that this ArrayQueue() method belongs to the
 // ArrayQueue<T> class.
 template <class T>
-ArrayQueue<T>::ArrayQueue(){
-
-}
+ArrayQueue<T>::ArrayQueue(){ //make sure variable names match!
+	backingArraySize = START_SIZE;
+	backingArray = new T [backingArraySize];
+    front = 0;
+    numItems = 0;
+}//end constructor
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
-}
+	delete[] backingArray;
+}//end destructor
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-
-}
+	if(numItems==backingArraySize)
+        grow();
+    
+    backingArray[(front+numItems)%backingArraySize] = toAdd; //formula from class
+    numItems += 1;
+}//end add
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
-}
+	if(numItems==0)
+		throw (std::string)"No elements remain to be removed.";
+
+	T removed = backingArray[front];
+	front = (front+1) % backingArraySize;
+	numItems -= 1;
+	return removed;
+}//end remove
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-
-}
+	return numItems;
+}//end getNumItems
 
 template <class T>
 void ArrayQueue<T>::grow(){
+	T* replacement = new T[backingArraySize*2];
+	if (replacement==NULL)
+	  throw std::string("You have run out of memory, sorry.");
 
-}
+	for (unsigned long i=0; i<numItems; i++)
+	  replacement[i] = backingArray[(i+front)%backingArraySize];
+
+	front = 0;
+	delete[] backingArray;
+	backingArray = replacement;
+	backingArraySize *= 2;
+}//end grow
