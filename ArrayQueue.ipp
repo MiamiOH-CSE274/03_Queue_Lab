@@ -122,7 +122,8 @@ void ArrayQueue<T>::grow()
 	while(count<numItems){
 
                 //Exactly copy the elements from old array to new array.
-		newArray[ ( front+count % backingArraySize )] = backingArray[ ( front+count ) % backingArraySize ];
+                //newArray[ ( front+count % backingArraySize )] = backingArray[ ( front+count ) % backingArraySize ];
+		newArray[count] = backingArray[ ( front+count ) % backingArraySize ];
 
 		count++;
 	}
