@@ -51,8 +51,23 @@ void ArrayQueue<T>::add(T toAdd){
 
 template <class T>
 T ArrayQueue<T>::remove(){
-	T aFakeItem;
-	return aFakeItem;  
+	numItems--;
+
+	//Make a new array, put in the new items
+	T* myNewArray = new T[numItems];
+
+	//Saves the value that we will be returning
+	T retVal = backingArray[0];
+
+	//Copy over the contents of the old array, starting from position 1
+	for(unsigned int i=0; i<numItems; i++) {
+		myNewArray[i] = backingArray[i+1];
+	}
+
+	delete[] backingArray;
+	backingArray = myNewArray;
+
+	return retVal;
 }
 
 template <class T>
