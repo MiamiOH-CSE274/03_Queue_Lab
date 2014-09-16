@@ -15,7 +15,12 @@
 // ArrayQueue<T> class.
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
+	//THIS IS WHAT I NEEDED TO INITIALIZE!
+	numItems = 0;
 
+	//Creates a new variable of type numItems and stores the address
+	//in backingArray
+	backingArray = new T[numItems];
 }
 
 template <class T>
@@ -25,17 +30,35 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	numItems++;
 
-}
+	//Make a new array, put in the new items
+	T* myNewArray = new T[numItems];
+	myNewArray[numItems-1] = toAdd;
+
+	//Copy over all the old items
+	for(int i=0; i<numItems-1; i++) {
+		myNewArray[i] = backingArray[i];
+	}
+
+	//This is delete[], not delete
+	//is a dangling pointer, points to same stuff, but it isn't allocated anymore
+	delete[] backingArray;
+
+	//Assign backingArray the new array
+	backingArray = myNewArray;
+}	
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
+	T aFakeItem;
+	return aFakeItem;  
 }
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-
+	//numItems was declared in "ArrayQueue.h"
+	return numItems;
 }
 
 template <class T>
