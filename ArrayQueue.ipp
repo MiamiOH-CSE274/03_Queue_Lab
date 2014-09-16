@@ -16,7 +16,9 @@
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
-	backingArray = new T[numItems];
+	front = 0;
+	backingArray = new T[START_SIZE];
+	backingArraySize = START_SIZE;
 }
 
 template <class T>
@@ -26,41 +28,20 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
-
-	//Makes a new array to put in the newest item
-	T* myNewArray = new T[numItems];
-	myNewArray[numItems-1] = toAdd;
-
-	//copy old items into the new array
-	for(unsigned int i=0;i<numItems-1;i++){
-	myNewArray[i] = backingArray[i];
+	
+	while(numItems > backingArraySize){
+	grow();
 	}
 
-	//delete[] for an array
-	delete[] backingArray;
-
-	backingArray = myNewArray;
+	backingArray[(front+numItems)%backingArraySize] = toAdd;
+	numItems++;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
 	numItems--;
-
-	//New aray with one less space
-	T* myNewArray = new T[numItems];
-
-	T retVal = backingArray[0];
-
-	for(unsigned int i=0;i<numItems;i++){
-	myNewArray[i] = backingArray[i+1];
-	}
-
-	delete[] backingArray;
-	backingArray = myNewArray;
-
-	return retVal;
-
+	front++;
+	return backingArray[front-1];
 }
 
 template <class T>
@@ -70,5 +51,9 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
-
+T* myNewArray = new T[backingArraySize++];
+for(unsigned int i=0;i<numItems;i++){
+	myNewArray[i] = backingArray[(front+i)%backingArraySize];
+}
+front = 0;
 }
