@@ -3,7 +3,9 @@
 //Date: 2013/06/26
 #include "Queue.h"
 
+// Template class - fill-in-the-blanks
 template <class T>
+// ArrayQueue extends Queue
 class ArrayQueue : public Queue <T> {
  public:
   //See Queue.h for documentation of these methods
@@ -19,9 +21,11 @@ class ArrayQueue : public Queue <T> {
   //Initialize all private member variables.
   // You initial backing array should be length 10. Allocate it
   // using "new"
+  // Constructor
   ArrayQueue();
   //Delete any dynamically allocated memory. If you are deleting
   // an array, be sure to use "delete[]" instead of "delete"
+  // Destructor
   virtual ~ArrayQueue();
 
  private:
