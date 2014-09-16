@@ -14,7 +14,7 @@ Requirements
 4. grow takes O(n) time
 5. Do not leak memory (make sure grow and the destructor do the right thing)
 6. getNumItems is O(1) time
-7. add and remove throw excpetions as appropriate
+7. add and remove throw exceptions as appropriate
 8. You must use the array in a circular fashion. If you don't do this you probably won't be able to get #1, #2 and #3 to all be true.
 
 Reading

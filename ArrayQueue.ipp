@@ -13,29 +13,57 @@
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this ArrayQueue() method belongs to the
 // ArrayQueue<T> class.
+
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
+	numItems = 0;
+	backingArray = new T[numItems];
 
 }
 
 template <class T>
-ArrayQueue<T>::~ArrayQueue() {
+ArrayQueue<T>::~ArrayQueue(){
 
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	numItems ++;
+	// Make a new aray, put in the new item
+	T* myNewArray = new T[numItems];
+	myNewArray[numItems - 1] = toAdd;
 
+	//Copy over all the old items
+	for(unsigned int i = 0; i < numItems - 1; i++){
+		myNewArray[i] = backingArray[i];
+	}
+
+	delete[] backingArray;
+
+	backingArray = myNewArray;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
+	numItems --;
+
+	T* myNewArray = new T[numItems];
+
+	T retVal = backingArray[0];
+
+	for(unsigned int i = 0; i < numItems; i++){
+		myNewArray[i] = backingArray[i + 1];
+	}
+
+	delete[] backingArray;
+	backingArray = myNewArray;
+
+	return retVal;
 }
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-
+	return numItems;
 }
 
 template <class T>

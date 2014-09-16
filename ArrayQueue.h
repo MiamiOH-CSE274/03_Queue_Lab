@@ -3,6 +3,7 @@
 //Date: 2013/06/26
 #include "Queue.h"
 
+
 template <class T>
 class ArrayQueue : public Queue <T> {
  public:
@@ -36,6 +37,7 @@ class ArrayQueue : public Queue <T> {
   
   //The index in T where the front of the queue is.
   unsigned long front;
+
   //Number of items in the queue
   unsigned long numItems;
 
