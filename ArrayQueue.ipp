@@ -54,7 +54,7 @@ template <class T>
 void ArrayQueue<T>::grow(){
 	
 	T* newArray = new T[backingArraySize * 2];
-	for (int i = 0; i < backingArraySize; i++)
+	for (unsigned int i = 0; i < backingArraySize; i++)
 		newArray[i] = backingArray[(i + front) % backingArraySize];
 	backingArraySize *= 2;
 	front= 0;
