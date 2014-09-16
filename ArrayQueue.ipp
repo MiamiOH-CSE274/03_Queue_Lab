@@ -1,8 +1,6 @@
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
-#include <exception>
-
 
 //Syntax note: This uses the pre-processor to create a constant
 // You could also use "const static" to make a constant, as in Java.
@@ -19,7 +17,7 @@ template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	front = 0;
 	numItems = 0;
-	backingArraySize = 10;
+	backingArraySize = START_SIZE;
 	backingArray = new T[backingArraySize];
 }
 
@@ -30,7 +28,7 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	if (numItems >= backingArraySize){
+	if (numItems == backingArraySize){
 		grow();
 		}
 	backingArray[(front + numItems) % backingArraySize] = toAdd;
