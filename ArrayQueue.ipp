@@ -37,7 +37,7 @@ void ArrayQueue<T>::add(T toAdd){
 	myNewArray[numItems-1] = toAdd;
 
 	//Copy over all the old items
-	for(int i=0; i<numItems-1; i++) {
+	for(unsigned int i=0; i<numItems-1; i++) {
 		myNewArray[i] = backingArray[i];
 	}
 
