@@ -17,7 +17,7 @@ class ArrayQueue : public Queue <T> {
   unsigned long getNumItems();
 
   //Initialize all private member variables.
-  // You initial backing array should be length 10. Allocate it
+  // Your initial backing array should be length 10. Allocate it
   // using "new"
   ArrayQueue();
   //Delete any dynamically allocated memory. If you are deleting
