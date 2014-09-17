@@ -16,7 +16,8 @@
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
-	backingArray = new T[numItems];
+	backingArray = new T[START_SIZE];
+	backingArraySize = START_SIZE;
 }
 
 template <class T>
@@ -70,5 +71,14 @@ unsigned long ArrayQueue<T>::getNumItems(){
 template <class T>
 //Tip: double the array length when growing
 void ArrayQueue<T>::grow(){
+	T* grownArray = new T[backingArraySize * 2];
+	backingArraySize = backingArraySize * 2;
+	grownArray[numItems-1] = toAdd;
+
+	for(unsigned int i=0; i<numItems-1; i++)
+		grownArray[i] = backingArray[i];
+
+	delete[] backingArray;
+	backingArray = grownArray;
 
 }
