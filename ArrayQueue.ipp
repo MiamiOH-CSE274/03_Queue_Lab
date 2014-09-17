@@ -28,18 +28,25 @@ ArrayQueue<T>::~ArrayQueue() {
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
 	numItems++;
-	//Make a new array, put in the new item
-	T* myNewArray = new T[numItems];
-	myNewArray[numItems-1] = toAdd;
 
-	//Copy over the old items
-	for(unsigned int i=0; i<numItems-1; i++){
-		myNewArray[i] = backingArray[i];
+	if(numItems >= backingArraySize){
+		backingArray.grow();
 	}
 
+	backingArray.add(toAdd);
+
+	//Make a new array, put in the new item
+	//T* myNewArray = new T[numItems];
+	//myNewArray[numItems-1] = toAdd;
+
+	//Copy over the old items
+	//for(unsigned int i=0; i<numItems-1; i++){
+	//	myNewArray[i] = backingArray[i];
+	//}
+	//
 	//This is delete[], not delete
-	delete[] backingArray;
-	backingArray = myNewArray;
+	//delete[] backingArray;
+	//backingArray = myNewArray;
 
 }
 
@@ -73,7 +80,6 @@ template <class T>
 void ArrayQueue<T>::grow(){
 	T* grownArray = new T[backingArraySize * 2];
 	backingArraySize = backingArraySize * 2;
-	grownArray[numItems-1] = toAdd;
 
 	for(unsigned int i=0; i<numItems-1; i++)
 		grownArray[i] = backingArray[i];
