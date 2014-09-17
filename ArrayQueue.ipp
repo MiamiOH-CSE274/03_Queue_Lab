@@ -30,10 +30,10 @@ void ArrayQueue<T>::add(T toAdd){
 	numItems++;
 
 	if(numItems >= backingArraySize){
-		backingArray.grow();
+		ArrayQueue<T>::backingArray.grow();
 	}
 
-	backingArray.add(toAdd);
+	ArrayQueue<T>::backingArray.add(toAdd);
 
 	//Make a new array, put in the new item
 	//T* myNewArray = new T[numItems];
