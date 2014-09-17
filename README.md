@@ -39,12 +39,18 @@ Questions
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
-#### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+#### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
+In C++ you would use a colon to represent the statement "extends" in the declaration of your class ArrayQueue.
+
 #### 5. What is the purpose of "templates" in C++?
 
+Templates allow a single function to be used for different data types without rewriting the methods for each separate type.
+
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+
+int* myNewArray = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
