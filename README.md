@@ -14,7 +14,7 @@ Requirements
 4. grow takes O(n) time
 5. Do not leak memory (make sure grow and the destructor do the right thing)
 6. getNumItems is O(1) time
-7. add and remove throw excpetions as appropriate
+7. add and remove throw exceptions as appropriate
 8. You must use the array in a circular fashion. If you don't do this you probably won't be able to get #1, #2 and #3 to all be true.
 
 Reading
@@ -28,9 +28,9 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
+1. The remove function works and returns the value that is no longer wanted in the ArrayQueue.
+2. Adds a number to the ArrayQueue successfully and if needed will increase the size of the ArrayQueue.
+3. The grow function doubles the ArrayQueue size and is only called in the add function if the number of items becomes too large.
 4. TODO
 5. TODO
 6. TODO
