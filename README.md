@@ -43,8 +43,16 @@ Questions
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
+				To write class SOMETHING extends SOMETHING ELSE you use a ":". The colon does the same thing as the keyword "extends" does in Java in C++. So the above example would look like "class ArrayQueue : public Queue<T>".
+				
 #### 5. What is the purpose of "templates" in C++?
+
+				Templates fulfill the role that interfaces have in Java. Their purpose is to tell the classes that use the template what functions they must have included in them as well as any non-private variables. The template does not contain code in the functions or define any variables. It allows the class implementing the template to determine HOW each function will work. The template simply says that  a class must have certain functions.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
 
+				int *p = new int[10];
+
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+
+				The purpose of a class destructor is to free up resources (aka memory) that the object may have taken up. This is not needed in Java because Java does not allow the programmer to fiddle with the memory directly like C++ does. 
