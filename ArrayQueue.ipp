@@ -18,6 +18,7 @@ template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
 	backingArray = new T[START_SIZE];
+	backingArraySize = START_SIZE;
 }
 
 template <class T>
@@ -27,9 +28,11 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	
-	
 	numItems++;
+
+	if(numItems+1 > backingArraySize){
+		grow();
+	}
 	
 	//make a new array, put in the new item
 	T* myNewArray = new T[numItems];
@@ -50,6 +53,7 @@ void ArrayQueue<T>::add(T toAdd){
 template <class T>
 T ArrayQueue<T>::remove(){
 	numItems--;
+	
 	try{
 		getNumItems();
 	}catch(std::string msg){
@@ -84,9 +88,9 @@ unsigned long ArrayQueue<T>::getNumItems(){
 template <class T>
 void ArrayQueue<T>::grow(){
 	
-	int currentSize = backingArray.size();
-	if(numItems==currentSize){
-		int doubleSize = 2 * currentSize;
+	if(numItems==backingArraySize){
+		int doubleSize = 2 * backingArraySize;
+		backingArraySize = doubleSize;
 		T* myNewArray = new T[doubleSize];
 
 		for(unsigned int i = 0; i < numItems; i++){
@@ -95,5 +99,6 @@ void ArrayQueue<T>::grow(){
 
 		delete[] backingArray;
 		backingArray = myNewArray;
+		
 	}
 }
