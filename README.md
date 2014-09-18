@@ -38,10 +38,16 @@ Questions
 8. TODO
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+	
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+	One question I have about this exercise is how to keep track of the size of the array (not the number of elements inside the array, but the actual array size itself). For one method, I 
+	used b.size(), though when using that same array function inside of a different function, an error was thrown. I am sure that there is a technical explanation for this, but it also might be
+	the case that I just have to hard code a new method for getting the size of the array.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+	To write this, you just have to code 
+	class ArrayQueue : public Queue <T> {...
 
 #### 5. What is the purpose of "templates" in C++?
 
