@@ -73,6 +73,7 @@ void testGrow(ArrayQueue<int>& testQueue){
 void testRemoveException(ArrayQueue<int>& testQueue){
   try {
     int t = testQueue.remove();
+
   } catch (std::string s) {
     std::cout << "SUCCESS: Caught exception: " << s << std::endl;
     return;
@@ -92,6 +93,6 @@ int main(){
   testAroundTheHorn(testQueue);
   testGrow(testQueue);
   testRemoveException(testQueue);
-
+  
   return 0;
 }
