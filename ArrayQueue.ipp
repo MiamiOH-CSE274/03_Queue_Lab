@@ -1,3 +1,13 @@
+/**Partially authored by: Chris Dieter
+* As I am still a little fuzzy on circular arrays, many
+* parts of my add and remove functions depend heavily on
+* the algorithms in our class book, Open Data Structures, 
+* in the part of ArrayQueues. Help for the writing the exception
+* is credited to Dr. Brinkman, as well as the modulo equations used
+* for the for loops.
+*/
+
+
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
@@ -19,6 +29,7 @@ ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
 	backingArray = new T[START_SIZE];
 	backingArraySize = START_SIZE;
+	front = 0;
 }
 
 template <class T>
@@ -26,30 +37,18 @@ ArrayQueue<T>::~ArrayQueue() {
 	//clean up the memory
 	delete[] backingArray;
 	backingArray = 0;
+	front = 0;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
 
 	if(numItems+1 > backingArraySize){
 		grow();
 	}
 	
-	//make a new array, put in the new item
-	T* myNewArray = new T[numItems];
-	myNewArray[numItems-1] = toAdd;
-
-	//Copy over old items
-	for(unsigned int i = 0; i < numItems-1; i++){
-		myNewArray[i] = backingArray[i];
-	}
-
-	//This is delete[], not delete
-	delete[] backingArray;
-
-	backingArray = myNewArray;
-	
+	backingArray[(front+numItems) % backingArraySize] = toAdd;
+	numItems++;	
 }
 
 template <class T>
@@ -58,20 +57,12 @@ T ArrayQueue<T>::remove(){
 	if(numItems < 1){
 		throw std::string("Queue is already empty, cannot remove from zero");
 	}
+	T retVal = backingArray[front];
+	front = (front + 1) % backingArraySize;
 	numItems--;
-
-	T* myNewArray = new T[numItems];
-	
-	T retVal = backingArray[0];
-
-	//Copy over old items
-	for(unsigned int i = 0; i < numItems; i++){
-		myNewArray[i] = backingArray[i+1];
+	if(backingArraySize >= 3 * numItems){
+		grow();
 	}
-
-	delete[] backingArray;
-	backingArray = myNewArray;
-
 	return retVal;
 }
 
@@ -85,13 +76,13 @@ void ArrayQueue<T>::grow(){
 	
 	if(numItems==backingArraySize){
 		int doubleSize = 2 * backingArraySize;
-		backingArraySize = doubleSize;
 		T* myNewArray = new T[doubleSize];
 
 		for(unsigned int i = 0; i < numItems; i++){
-			myNewArray[i] = backingArray[i];
+			myNewArray[i] = backingArray[(front + i) % backingArraySize];
 		}
-
+		backingArraySize = doubleSize;
+		front = 0;
 		delete[] backingArray;
 		backingArray = myNewArray;
 		

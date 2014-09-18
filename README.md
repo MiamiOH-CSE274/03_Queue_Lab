@@ -31,11 +31,11 @@ Questions
 1. This function takes O(1) time because the operation works on the head of the list, which is directly proportional to the number of elements in the queue, n.
 2. The add function also takes O(1) time (without a call to grow) because it works on the back of the list where adding an element to a space is proportional to the number of elements in the array, only this time it adds an element in the back instead of taking it off upfront.
 3. I have programmed the grow function to first check if numItems equals backingArraySize, and then the backing Array is double by assigning it to an array twice its size. 
-4. TODO
+4. Grow takes O(n) time because it depends on how many elements are in the array. The more elements need to copy over, the run time will proportionally grow as well.
 5. All destructors have been called at the end of each function so that the previous memory allocated to backingArray has been freed up and an assignment has it pointed to the copy array that was created in each function.
 6. getNumItems takes O(1) time because it is directly proportional to the number of elements in the array.
-7. TODO
-8. The array works in a circular fashion (First in last out), in that the add function puts elements into the back of the array and the remove function takes them out of the front.
+7. Exceptions are thrown when remove is called on an empty array.
+8. The array works in a circular fashion (due to reading the Open Data Structures book). I tried to do this on my own and ran into a quite a few problems, so I used parts in the book for help. After reading through the section, the loops of the circular array make sense to me now.
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 	When implementing a stack instead of a queue, we could use most of the private methods and variables that we first declared because the only difference between the two structures is that
@@ -46,10 +46,11 @@ Questions
 	One question I have about this exercise is how to keep track of the size of the array (not the number of elements inside the array, but the actual array size itself). For one method, I 
 	used b.size(), though when using that same array function inside of a different function, an error was thrown. I am sure that there is a technical explanation for this, but it also might be
 	the case that I just have to hard code a new method for getting the size of the array.
+	EDIT: Found out that one cannot use normal api methods on pointers, so I utilized the backingArraySize variable like we were originally supposed to.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 	To write this, you just have to code 
-	class ArrayQueue : public Queue <T> {...
+	class ArrayQueue : public Queue <T> {...}
 
 #### 5. What is the purpose of "templates" in C++?
 	The purpose of using template classes originates in that c++ does not support interfaces, so a data structure is made in a .h file. To use that data structure, one can build a header file
