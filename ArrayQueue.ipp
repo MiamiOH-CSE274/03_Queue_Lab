@@ -23,7 +23,9 @@ ArrayQueue<T>::ArrayQueue(){
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	//clean up the memory
+	delete[] backingArray;
+	backingArray = 0;
 }
 
 template <class T>
