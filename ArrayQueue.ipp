@@ -52,13 +52,11 @@ void ArrayQueue<T>::add(T toAdd){
 
 template <class T>
 T ArrayQueue<T>::remove(){
-	numItems--;
 	
-	try{
-		getNumItems();
-	}catch(std::string msg){
-		std::cout << msg << std::endl;
+	if(numItems < 1){
+		throw std::string("Queue is already empty, cannot remove from zero");
 	}
+	numItems--;
 
 	T* myNewArray = new T[numItems];
 	
@@ -77,11 +75,6 @@ T ArrayQueue<T>::remove(){
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-	
-	if(numItems < 0){
-		throw "Cannot remove from zero items!";
-	}
-	
 	return numItems;
 }
 
