@@ -26,7 +26,11 @@ ArrayQueue<T>::ArrayQueue(){
 // Destructor
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	// Cleanup after yourself
+	delete[] backingArray;
+	// Reset pointer so it no longer points to anything
+	// NULL is defined as zero
+	backingArray = NULL;
 }
 
 template <class T>
@@ -43,10 +47,14 @@ void ArrayQueue<T>::add(T toAdd){
 // Remove from front of array
 template <class T>
 T ArrayQueue<T>::remove(){
+	if(numItems < 1){
+		throw std::string("Queue is already empty, attempted to remove.");
+	}
 	front++;
 	// subtract one from the length
 	numItems--;
 	return backingArray[front-1];
+	
 }
 
 template <class T>

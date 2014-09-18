@@ -91,7 +91,7 @@ int main(){
   testAddRemove(testQueue);
   //testAroundTheHorn(testQueue);
   //testGrow(testQueue);
-  //testRemoveException(testQueue);
+  testRemoveException(testQueue);
 
   return 0;
 }
