@@ -54,6 +54,10 @@ class ArrayQueue : public Queue <T> {
  *
  **/
 
+
+
+//Normal start of ArrayQueue.ipp
+
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
@@ -72,7 +76,9 @@ class ArrayQueue : public Queue <T> {
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
-	backingArray = new T[numItems];
+	front = 0;
+	backingArray = new T[START_SIZE];
+	backingArraySize = START_SIZE;
 }
 
 template <class T>
@@ -84,23 +90,10 @@ ArrayQueue<T>::~ArrayQueue() {
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
 	numItems++;
-
-	//Make a new Array
-	T* tempArray = new T[numItems];
-
-	//Add new item to array
-	tempArray[numItems-1] = toAdd;
-
-
-	//Copy over all the old items
-	for(unsigned int i=0; i<numItems-1; i++){
-		tempArray[i] = backingArray[i];
+	if(numItems > backingArraySize){
+		grow();
 	}
-
-	delete[] backingArray;
-
-	//Update pointer
-	backingArray = tempArray;
+	backingArray[front+numItems-1] = toAdd;
 }
 
 template <class T>
@@ -111,19 +104,9 @@ T ArrayQueue<T>::remove(){
 
 	if(numItems >= 1){
 		numItems--;
+		T retVal = backingArray[front];
 
-		//Make a new Array
-		T* tempArray = new T[numItems];
-
-		T retVal = backingArray[0];
-
-		//Copy over all the old items
-		for(unsigned int i=0; i<numItems; i++){
-			tempArray[i] = backingArray[i+1];
-		}
-
-		delete[] backingArray;
-		backingArray = tempArray;
+		front = (front + 1) % backingArraySize;
 
 		return retVal;
 	}
@@ -136,5 +119,17 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
+	
+	int backingArraySizeNew = backingArraySize * 2;
 
+	T* tempArray = new T[backingArraySizeNew];
+
+	for(int i=0; i<backingArraySize; i++){
+		tempArray[i] = backingArray[i];
+	}
+
+	delete[] backingArray;
+
+	backingArray = tempArray;
+	backingArraySize = backingArraySizeNew;
 }
