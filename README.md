@@ -47,7 +47,7 @@ Questions
 				
 #### 5. What is the purpose of "templates" in C++?
 
-				Templates fulfill the role that interfaces have in Java. Their purpose is to tell the classes that use the template what functions they must have included in them as well as any non-private variables. The template does not contain code in the functions or define any variables. It allows the class implementing the template to determine HOW each function will work. The template simply says that  a class must have certain functions.
+				Templates allow the programmer to make their code flexible with regards to data types. You can declare a variable that takes the place of the data types. You place the variable in any spot that normally would be used for declaring a data type. This allows the methods used to not be restricted to a particular data type. When a data type is declared the compiler will replace the variable that was defined with the appropriate data type that you have chosen.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
 

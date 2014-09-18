@@ -12,9 +12,9 @@ class ArrayQueue : public Queue <T> {
   // so if I do add, remove, add, remove, add, remove ...
   // even if I do it 10000000 times, your array should not grow.
   // The array should never grow unless numItems == backingArraySize
-  void add(T toAdd);
-  T remove();
-  unsigned long getNumItems();
+  virtual void add(T toAdd);
+  virtual T remove();
+  virtual unsigned long getNumItems();
 
   //Initialize all private member variables.
   // Your initial backing array should be length 10. Allocate it

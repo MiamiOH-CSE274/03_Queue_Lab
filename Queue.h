@@ -28,7 +28,7 @@ class Queue {
   // 1) Declare it to be virtual
   // 2) Add "=0" to the declaration to tell the compiler that
   //    the function will never be implemented
-  virtual void add(T toAdd) = 0;
+  virtual void add(T toAdd) = 0; //= 0 means this is an abstract class that will not have any code in it
   //Remove the first item from the queue, and return it
   //If the queue is empty, throw a string exception
   virtual T remove() = 0;

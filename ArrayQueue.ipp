@@ -1,7 +1,7 @@
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
-
+#define NULL = 0;
 //Syntax note: This uses the pre-processor to create a constant
 // You could also use "const static" to make a constant, as in Java.
 // Notice, however, that START_SIZE is NOT a variable! Instead, any
@@ -22,7 +22,8 @@ ArrayQueue<T>::ArrayQueue(){
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	delete[] backingArray;
+	backingArray = NULL;
 }
 
 template <class T>
@@ -35,6 +36,7 @@ void ArrayQueue<T>::add(T toAdd){
 
 	ArrayQueue<T>::backingArray.add(toAdd);
 
+	//the old slow way
 	//Make a new array, put in the new item
 	//T* myNewArray = new T[numItems];
 	//myNewArray[numItems-1] = toAdd;
@@ -52,22 +54,26 @@ void ArrayQueue<T>::add(T toAdd){
 
 template <class T>
 T ArrayQueue<T>::remove(){
-	numItems--;
-
-	//Make a new array, put in the new item
-	T* myNewArray = new T[numItems];
-
-	T retVal = backingArray[0];
-
-	//Copy over the old items
-	for(unsigned int i=0; i<numItems; i++){
-		myNewArray[i] = backingArray[i+1];
+	if(numItems < 1){
+		//bad stuff!
+		throw std::string("Queue is already empty!");
 	}
+		numItems--;
+		//Make a new array, put in the new item
+		T* myNewArray = new T[numItems];
 
-	delete[] backingArray;
-	backingArray = myNewArray;
+		T retVal = backingArray[0];
 
-	return retVal;
+		//Copy over the old items
+		for(unsigned int i=0; i<numItems; i++){
+			myNewArray[i] = backingArray[i+1];
+		}
+
+		delete[] backingArray;
+		backingArray = myNewArray;
+
+		return retVal;
+	
 }
 
 template <class T>
