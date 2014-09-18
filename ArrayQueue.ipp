@@ -21,7 +21,8 @@ ArrayQueue<T>::ArrayQueue(){
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	delete[] backingArray;
+	backingArray = NULL;
 }
 
 template <class T>
@@ -48,22 +49,28 @@ void ArrayQueue<T>::add(T toAdd){
 
 template <class T>
 T ArrayQueue<T>::remove(){
-	numItems--;
-
-	//Make a new Array
-	T* tempArray = new T[numItems];
-
-	T retVal = backingArray[0];
-
-	//Copy over all the old items
-	for(unsigned int i=0; i<numItems; i++){
-		tempArray[i] = backingArray[i+1];
+	if(numItems < 1){
+		throw std::string("Attempted to remove from an empty queue.");
 	}
 
-	delete[] backingArray;
-	backingArray = tempArray;
+	if(numItems >= 1){
+		numItems--;
 
-	return retVal;
+		//Make a new Array
+		T* tempArray = new T[numItems];
+
+		T retVal = backingArray[0];
+
+		//Copy over all the old items
+		for(unsigned int i=0; i<numItems; i++){
+			tempArray[i] = backingArray[i+1];
+		}
+
+		delete[] backingArray;
+		backingArray = tempArray;
+
+		return retVal;
+	}
 }
 
 template <class T>
