@@ -15,57 +15,25 @@
 // ArrayQueue<T> class.
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
-	numItems = 0;
-	backingArray = new T[numItems];
+
 
 }
 
 template <class T>
-ArrayQueue<T>::~ArrayQueue() {
+ArrayQueue<T>::~ArrayQueue() { // clean up after yourself
 
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
 
-	// Make a new array, put in the new item
-	T* myNewArray = new T[numItems];
-	myNewArray[numItems-1] = toAdd;
-
-	// Copy over all the old items
-	for (int i=0; i < numItems-1; i++) {
-		myNewArray[i] = backingArray[i];
-	} // end for
-
-	// We still need to move the backingArray var and delete the old array
-	
-	// This delete[], not delete
-	delete[] backingArray;
-
-	// That variable was local, disappeared when it went out of scope.
-	// The thing it was pointing too lives on in the heap (dangling pointer)
-	// We set it equal to myNewArray.
-	backingArray = myNewArray;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-	numItems--;
-	// Make a new array, put in the new item
-	T* myNewArray = new T[numItems]; //********************************
-	T retVal = backingArray[0];
-
-	// Copy over all the old items
-	for (unsigned int i=0; i<numItems;i++) {
-		myNewArray[i] = backingArray[i+1];
-	} // end for
-
-	delete[] backingArray;
-	backingArray = myNewArray;
-
-	return retVal;
-}
+	
+	}
+	
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
