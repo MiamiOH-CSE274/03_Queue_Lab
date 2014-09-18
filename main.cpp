@@ -89,9 +89,9 @@ int main(){
   ArrayQueue<int> testQueue;
   testCtor(testQueue);
   testAddRemove(testQueue);
-  //testAroundTheHorn(testQueue);
-  //testGrow(testQueue);
-  //testRemoveException(testQueue);
+  testAroundTheHorn(testQueue);
+  testGrow(testQueue);
+  testRemoveException(testQueue);
 
   return 0;
 }
