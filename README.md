@@ -28,8 +28,8 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
+1. Remove works correctly, returning the value that is specified.
+2. Add works the right way, adding to the array.
 3. TODO
 4. TODO
 5. TODO
@@ -39,12 +39,21 @@ Questions
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
-#### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
-#### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+	I would suggest to take some time to understand how to make the conversion between the Java syntax, which we already know, to C++. It can be confusing, but all the same general logic is there. It's just different typing.
 
-#### 5. What is the purpose of "templates" in C++?
+4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
-#### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+	If you wanted to do this in C++, you would put a ":" when you declare the ArrayQueue class.
 
-#### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+5. What is the purpose of "templates" in C++?
+
+	A template allows you to use the same functions with different types of data.
+
+6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+	int* anArrayOfAwesomeness = new int [10];
+
+7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+
+	The purpose of the destructor is to free up the memory that has been allocated for the object. Java doesn't need this because you do not allocate memory, and thus are not required to free any up.
