@@ -13,10 +13,13 @@
 // to which classes. That is why we have to use the scope operator to
 // tell the compiler that this ArrayQueue() method belongs to the
 // ArrayQueue<T> class.
+
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
-	backingArray = new T[numItems];
+    front = 0;
+    backingArraySize = START_SIZE;
+	backingArray = new T[backingArraySize];
 }
 
 template <class T>
@@ -26,42 +29,22 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
 
-	//Make a new array, put in the new item
-	T* myNewArray = new T[numItems];
-	myNewArray[numItems-1] = toAdd;
+    if(numItems == backingArraySize){
+        grow();
+    }
 
-	//Copy over all the old items
-	for(unsigned int i = 0; i < numItems-1; i++){
-		myNewArray[i] = backingArray[i];
-	}
-
-	//This is delete[], not delete
-	delete[] backingArray;
-	
-	backingArray = myNewArray;
-
-	
+	backingArray[(front + numItems) % backingArraySize] = toAdd;
+    numItems++;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
    numItems--;
+   
+   front++;
 
-   T* myNewArray = new T[numItems];
-  
-   T retVal = backingArray[0];
-
-  	for(unsigned int i = 0; i < numItems; i++){
-		myNewArray[i] = backingArray[i+1];
-	}
-
-	delete[] backingArray;
-	backingArray = myNewArray;
-
-    return retVal;
-
+   return backingArray[front-1];
 }
 
 template <class T>
@@ -72,5 +55,14 @@ unsigned long ArrayQueue<T>::getNumItems(){
 template <class T>
 void ArrayQueue<T>::grow(){
 
+T* newArray = new T[backingArraySize + 10];
+for(unsigned int i=0;i<numItems;i++){
+	newArray[i] = backingArray[(front+i)%backingArraySize];
+}
+
+delete[] backingArray;
+backingArray = newArray;
+
+front = 10;
 }
 
