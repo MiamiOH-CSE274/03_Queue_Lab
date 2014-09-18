@@ -55,6 +55,8 @@ unsigned long ArrayQueue<T>::getNumItems(){
 template <class T>
 void ArrayQueue<T>::grow(){
 
+front = backingArraySize;
+
 T* newArray = new T[backingArraySize + 10];
 for(unsigned int i=0;i<numItems;i++){
 	newArray[i] = backingArray[(front+i)%backingArraySize];
@@ -63,6 +65,5 @@ for(unsigned int i=0;i<numItems;i++){
 delete[] backingArray;
 backingArray = newArray;
 
-front = 10;
 }
 
