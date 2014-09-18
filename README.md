@@ -52,3 +52,5 @@ You would use a colon (:) to replace the word ‘extends’. Ex: class ArrayQueu
 int* array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+
+You need a class destructor because C++ does not know when you are done with a class or an instance of that class. In Java the instance of the class would be automatically deleted once your program was done using it, in C++ the instance is kept until a destructor method is called. 
