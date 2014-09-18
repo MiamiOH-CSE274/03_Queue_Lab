@@ -41,9 +41,9 @@ Questions
 
 Keep:
 
-backingArray
-grow()
-numItems
+backingArray,
+grow(),
+numItems,
 backingArraySize
 
 Get rid of:
