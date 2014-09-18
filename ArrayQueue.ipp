@@ -1,6 +1,7 @@
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
+#include <array>
 
 //Syntax note: This uses the pre-processor to create a constant
 // You could also use "const static" to make a constant, as in Java.
@@ -16,7 +17,7 @@
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
-	backingArray = new T[numItems];
+	backingArray = new T[START_SIZE];
 }
 
 template <class T>
@@ -26,6 +27,8 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	
+	
 	numItems++;
 	
 	//make a new array, put in the new item
@@ -41,11 +44,18 @@ void ArrayQueue<T>::add(T toAdd){
 	delete[] backingArray;
 
 	backingArray = myNewArray;
+	
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
 	numItems--;
+	try{
+		getNumItems();
+	}catch(std::string msg){
+		std::cout << msg << std::endl;
+	}
+
 	T* myNewArray = new T[numItems];
 	
 	T retVal = backingArray[0];
@@ -63,10 +73,27 @@ T ArrayQueue<T>::remove(){
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
+	
+	if(numItems < 0){
+		throw "Cannot remove from zero items!";
+	}
+	
 	return numItems;
 }
 
 template <class T>
 void ArrayQueue<T>::grow(){
+	
+	int currentSize = backingArray.size();
+	if(numItems==currentSize){
+		int doubleSize = 2 * currentSize;
+		T* myNewArray = new T[doubleSize];
 
+		for(unsigned int i = 0; i < numItems; i++){
+			myNewArray[i] = backingArray[i];
+		}
+
+		delete[] backingArray;
+		backingArray = myNewArray;
+	}
 }
