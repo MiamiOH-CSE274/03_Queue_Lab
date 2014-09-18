@@ -46,12 +46,14 @@ its good to check anyway (especially if the assignment wants you to)
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
 keep:
+
 1. grow()
 2. backingArray
 3. numItems (just an index of last thing added)
 4. backingArraySize
 
 remove:
+
 1. front
 
 the 'keep' methods and variables were chosen because a Stack will still be stored as an array in the background, so
