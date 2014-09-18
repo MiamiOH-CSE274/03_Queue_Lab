@@ -28,9 +28,9 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
+1. done, The program adds an element in the correct place and increases the size of the array if the number of elements is equal the array size.
+2. done, shifts the front of the array up one and returns the value of front-1 which would have been the first item in the array at the time of the remove() command.
+3. done,the size of the array doubles by the call of the grow() function when the number of items is == backingArraySize.
 4. TODO
 5. TODO
 6. TODO
@@ -43,8 +43,12 @@ Questions
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
+You would use a colon (:) to replace the word ‘extends’. Ex: class ArrayQueue : public Queue <T>.
+
 #### 5. What is the purpose of "templates" in C++?
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+
+int* array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
