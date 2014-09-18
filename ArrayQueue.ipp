@@ -17,7 +17,9 @@
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
-	backingArray = new T[numItems];
+	backingArray = new T[START_SIZE];
+	backingArraySize = START_SIZE;
+	front = 0;
 	
 }
 
@@ -29,52 +31,22 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	
+	// The front plus the number of items in the array gives
+	// the index of the next available location
+	backingArray[front + numItems] = toAdd;
+	
 	// Increase the number of items in the array - you are adding one
-	numItems++;
-	
-	// need to create a new array
-	T* myNewArray = new T[numItems];
-	
-	// put in the new item: numItems-1 is the length of the new array
-	myNewArray[numItems - 1] = toAdd;
-	
-	// Copy over all the old items
-	for(unsigned int i = 0; i < numItems-1; i++){
-		myNewArray[i] = backingArray[i];
-	}
-
-	// Need to make backingArray point to the new array
-	// also need to delete the current array that backingArray is pointing to
-	// this is delete[], not delete
-	delete[] backingArray;
-	// At this point backingArray still holds the address - just no longer an allocated object
-	// "dangling pointer" - points to somewhere in the Heap
-
-	// update backingArray (pointer)
-	backingArray = myNewArray;
+	numItems++;	
 }
 
 // Remove from front of array
 template <class T>
 T ArrayQueue<T>::remove(){
+	front++;
 	// subtract one from the length
 	numItems--;
-
-	// Create a new array to store the values
-	T* newArray = new T[numItems];
-
-	// save the removed value before it disappears!
-	T retVal = backingArray[0];
-
-	for(unsigned int i = 0; i < numItems; i++){
-		newArray[i] = backingArray[i+1];
-	}
-
-	// delete the old array
-	delete[] backingArray;
-	backingArray = newArray;
-
-	return retVal;
+	return backingArray[front-1];
 }
 
 template <class T>
