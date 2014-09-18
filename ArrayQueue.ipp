@@ -31,7 +31,7 @@ void ArrayQueue<T>::add(T toAdd){
 	if (numItems == backingArraySize)	{
 		grow();
 	}
-	backingArray[front + numItems] = toAdd;
+	backingArray[(front + numItems) % backingArraySize] = toAdd;
 	
 	numItems++;
 
@@ -52,6 +52,11 @@ void ArrayQueue<T>::add(T toAdd){
 
 template <class T>
 T ArrayQueue<T>::remove(){
+	
+	if (numItems == 0)	{
+		throw std::string("There are no items to remove!");
+	}
+	
 	T ret = backingArray[front];
 	front += 1;
 	if (front == backingArraySize)
@@ -61,10 +66,6 @@ T ArrayQueue<T>::remove(){
 	numItems--;
 	return ret;
 	
-
-
-
-
 	/*//make new array
 	T* myNewArray = new T[numItems];
 
@@ -79,7 +80,6 @@ T ArrayQueue<T>::remove(){
 	backingArray =  myNewArray;
 	return ret;
 	*/
-
 	//( front + numItems ) % backingarraysize
 }
 
@@ -92,9 +92,11 @@ template <class T>
 void ArrayQueue<T>::grow(){
 //double size of array
 	T* myNewArray = new T[backingArraySize * 2];
-	for (unsigned int i = 0; i<numItems - 1; i++)	{
-		myNewArray[i] = backingArray[i];
+	for (unsigned int i = 0; i<backingArraySize; i++)	{
+		myNewArray[i] = backingArray[(front + i) % backingArraySize];
 	}
 	delete[] backingArray;
 	backingArray = myNewArray;
+	backingArraySize *= 2;
+	front = 0;
 }
