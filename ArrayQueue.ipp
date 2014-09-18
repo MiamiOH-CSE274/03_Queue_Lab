@@ -24,7 +24,7 @@ ArrayQueue<T>::ArrayQueue(){
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
  delete[] backingArray;
- backingArray = 0;
+ backingArray = NULL;
 }
 
 template <class T>
@@ -45,7 +45,7 @@ if(numItems < 1){
 throw std::string("Error: Array Queue is already empty");
 } else {
 	numItems--;
-	front++;
+	front = (front++)%backingArraySize;
 	return backingArray[front-1];
 	}
 
