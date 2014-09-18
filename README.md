@@ -1,3 +1,6 @@
+Author
+==========
+Bo Brinkman, brinkmwj
 03_Queue_Lab
 ============
 
