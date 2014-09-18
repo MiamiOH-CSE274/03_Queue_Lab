@@ -38,7 +38,9 @@ Questions
 8. TODO
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
-	
+	When implementing a stack instead of a queue, we could use most of the private methods and variables that we first declared because the only difference between the two structures is that
+	the stack is LIFO and the queue is FIFO. The only variable I think we could safley get rid of would be the varibale "long front" because the stack operates in the back of the array and 
+	does not need to know where the front is (the front stays constant).
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 	One question I have about this exercise is how to keep track of the size of the array (not the number of elements inside the array, but the actual array size itself). For one method, I 
@@ -50,7 +52,14 @@ Questions
 	class ArrayQueue : public Queue <T> {...
 
 #### 5. What is the purpose of "templates" in C++?
+	The purpose of using template classes originates in that c++ does not support interfaces, so a data structure is made in a .h file. To use that data structure, one can build a header file
+	for a matching c++ class that uses the data structure, but the .cpp file will not know what type <T> is. Therefore, the source code must be compiled in the header file so that an actual
+	.cpp file can use the template class with a valid variable type. 
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
-
+	int* myArray = new int[10];
+	
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+	The purpose of a class destructor is to free up dynamically allocated memory that had previously been assigned to a different variable. For example, after a variable has lasted its use, the
+	delete keyword can be used to free up the memory for different usage. We do not need this in Java because the Java Virtual Machine automatically detects when a variable has no more use and 
+	runs garbage collection to clean it up.
