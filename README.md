@@ -30,12 +30,12 @@ Questions
 
 1. Remove works correctly, returning the value that is specified.
 2. Add works the right way, adding to the array.
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+3. Works. Doubles the size if and only if the number of items == backingArraySize.
+4. Working. Grow runs through the numbers from 0 to the size of the array.
+5. Check. Grows and deletes the array as necessary.
+6. Finished. Returns the value stored in the variable. (Easy)
+7. Complete. Exceptions are in place for both, and catch anything that is an error.
+8. Done. Used as a circular array.
 
 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
