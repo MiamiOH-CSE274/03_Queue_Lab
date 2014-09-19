@@ -28,17 +28,23 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. Yes, it is constant time. Since it's a circular array it already knows where the information is, and doesn't need to
+search the array.
+2. Yes, it should be constant unless grow is called. Because the method doesn't need to go through the entire list 
+to find where it needs to put information, it is constant. By modding we find out where there is space.
+3. Under add() we find out if backingSizeArrray and numItems are equal. If they are, then we grow the array.
+4. Grow has to be linear time because it takes information from one array and places it into another. So we "visit" every
+piece of information with the method.
+5. We delete the backingArray at the end, and set it to NULL (just in case).
+6. Since getNumItems is a variable and a method, it is constant. (We just return the variable in the method).
+7. Remove throws an exception when you try to use it on an already empty array.
+8. That's why we use (front+numItems)%backingArraySize. So we can find the free spaces in the array, and move "front" to where the
+array ends. Making an efficient use of space. 
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
-
+We would still need the size, a variable to keep track of the front and back of the stack, 
+ and the amount of info in the array (numItems).
+ 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 Start early on homework, and take notes during class. 
 
