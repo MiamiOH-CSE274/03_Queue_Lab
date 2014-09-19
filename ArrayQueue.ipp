@@ -1,3 +1,9 @@
+//Kyle Busdieker
+//Prof. Brinkman
+//CSE 274
+//Date: September 18, 2014
+//This code was created Bo Brinkman and modified by Kyle Busdieker
+
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
