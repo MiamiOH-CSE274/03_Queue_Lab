@@ -1,7 +1,6 @@
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
-
 //Syntax note: This uses the pre-processor to create a constant
 // You could also use "const static" to make a constant, as in Java.
 // Notice, however, that START_SIZE is NOT a variable! Instead, any
@@ -25,38 +24,24 @@ template <class T>
 ArrayQueue<T>::~ArrayQueue() {
 	//clean up
 	delete[] backingArray;
-	backingArray= NULL;
+//	backingArray= NULL;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	//check to see if need more spice
+	//check to see if need more space
 	if(backingArraySize<=numItems)
 	{ grow(); }
-	else
-	{
-		backingArray[(front+numItems)%backingArraySize]=toAdd;
-		numItems++;
-
-		/*T* myNewArray = new T[numItems];	
-		myNewArray[numItems-1]=toAdd;
-		//made a new array and put in a new item
-		//copy over old items
-		for(unsigned int i=0; i<numItems-1; i++)
-		{
-			myNewArray[i]= backingArray[i];
-		}
-		//this is delete[], not delete
-		delete[] backingArray;
-		backingArray=myNewArray;*/ 
-		}
+	backingArray[(front+numItems)%backingArraySize]=toAdd;
+	numItems++;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-	if(numItems<1)
-	{ //bad news!
-	throw std::string("Queue is already empty, attempted to remove.");
+	
+	if(numItems<1 || backingArraySize==0)
+	{
+		throw std::string("Queue is already empty, attempted to remove.");
 	 }
 
 	T retVal = backingArray[front];
@@ -89,15 +74,19 @@ void ArrayQueue<T>::grow(){
 	//front + numItems is first available space
 	//when near end of array (front+numItems)%backingArraySize
 
+
+
 	//making array twice as long
-	T* myNewArray = new T[START_SIZE*2];	
+	unsigned int doubleSize = backingArraySize*2;
+	T* myNewArray = new T[doubleSize];	
 
 	//putting old elements into new array
-	for(unsigned int i=0; i<numItems; i++)
+	for(unsigned int i=0; i<backingArraySize; i++)
 	{
-		myNewArray[i]= backingArray[i];
+		myNewArray[i]= backingArray[(front+i)%backingArraySize];
 	}
-	backingArraySize=START_SIZE*2;
+	backingArraySize=doubleSize;
+	front=0;
 	delete[] backingArray;
 	backingArray=myNewArray;
 }
