@@ -91,7 +91,7 @@ void ArrayQueue<T>::add(T toAdd){
 
 	numItems++;
 //grow array if full
-if (numItems = backingArraySize)
+if (numItems == backingArraySize)
 {
 grow();
 }
