@@ -35,10 +35,15 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	// Check to see if the array is full
+	if(numItems == backingArraySize){
+		grow();
+	}
 	
-	// The front plus the number of items in the array gives
+	// The front plus the number of items in the array 
+	// modulo the total array size gives
 	// the index of the next available location
-	backingArray[front + numItems] = toAdd;
+	backingArray[(front + numItems)%backingArraySize] = toAdd;
 	
 	// Increase the number of items in the array - you are adding one
 	numItems++;	
@@ -50,10 +55,19 @@ T ArrayQueue<T>::remove(){
 	if(numItems < 1){
 		throw std::string("Queue is already empty, attempted to remove.");
 	}
-	front++;
+
+	// Record the element that is being removed so it can be returned later
+	T removedValue = backingArray[front];
+
+	// Increment the front, making sure it wraps around to the correct location
+	// as needed my using modulo
+	front = (front + 1)%backingArraySize;
+
 	// subtract one from the length
 	numItems--;
-	return backingArray[front-1];
+	
+	// return the value
+	return removedValue;
 	
 }
 
@@ -64,5 +78,5 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
-
+	
 }
