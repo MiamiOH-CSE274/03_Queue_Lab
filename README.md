@@ -38,13 +38,19 @@ Questions
 8. TODO
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+Everything but front should be kept. Stacks add to the front so having a variable for front is not needed. 
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+The whole idea of circular arrays was confusing at first. 
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+: is used in C++ to mean the same thing as extends. ArrayQueue : Queue would be the way to write it in C++.
 
 #### 5. What is the purpose of "templates" in C++?
+Templates don't require you to specify the variable type. So the user can use any variable and the program finds and replaces all generic variables with the type specified by the user.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+In C++ , int* array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+The destructor is used to fix memory leaks and destroy objects in memory that are no longer in use. Java automatically frees up memory so delete and destructors aren't needed in Java.
