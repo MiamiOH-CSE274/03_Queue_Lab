@@ -23,7 +23,8 @@ ArrayQueue<T>::ArrayQueue(){
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	delete[] backingArray;
+	backingArray = NULL;
 }
 
 template <class T>
