@@ -1,6 +1,13 @@
 #include "ArrayQueue.h"
 #include <iostream>
 
+/**
+ *  Nick Cooperrider
+ *  9/18/2014
+ *  All code defining methods in ArrayQueue.h starting after 
+ *  the method declarations came from me.
+ **/
+
 //Check to make sure that numItems returns correct result on a fresh
 // instance of the ArrayQueue class
 void testCtor(ArrayQueue<int>& testQueue){
