@@ -93,7 +93,7 @@ void ArrayQueue<T>::add(T toAdd){
 	if(numItems > backingArraySize){
 		grow();
 	}
-	backingArray[front+numItems-1] = toAdd;
+	backingArray[(front+numItems-1)%backingArraySize] = toAdd;
 }
 
 template <class T>
@@ -102,14 +102,13 @@ T ArrayQueue<T>::remove(){
 		throw std::string("Attempted to remove from an empty queue.");
 	}
 
-	if(numItems >= 1){
-		numItems--;
-		T retVal = backingArray[front];
+	numItems--;
+	T retVal = backingArray[front];
 
-		front = (front + 1) % backingArraySize;
+	front = ((front + 1) % backingArraySize);
 
-		return retVal;
-	}
+	return retVal;
+	
 }
 
 template <class T>
@@ -123,13 +122,24 @@ void ArrayQueue<T>::grow(){
 	int backingArraySizeNew = backingArraySize * 2;
 
 	T* tempArray = new T[backingArraySizeNew];
+	
+	//std::cout << "Start Debug" << std::endl;
 
-	for(int i=0; i<backingArraySize; i++){
-		tempArray[i] = backingArray[i];
+	for(unsigned int i=front; i<backingArraySize; i++){
+		tempArray[i-front] = backingArray[i];
+		//std::cout << "# to copy: " << i << " : to spot: " << i-front << std::endl;
 	}
+
+	for(unsigned int i=1; i<front+1; i++){
+		tempArray[front+i+3] = backingArray[i-1];
+		//std::cout << "# to copy: " << i-1 << " : to spot: " << front+i+3 << std::endl;
+	}
+
+	//std::cout << "End Debug" << std::endl;
 
 	delete[] backingArray;
 
 	backingArray = tempArray;
 	backingArraySize = backingArraySizeNew;
+	front = 0;
 }

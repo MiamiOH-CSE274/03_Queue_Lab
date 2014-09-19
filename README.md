@@ -45,6 +45,8 @@ Questions
 
 #### 5. What is the purpose of "templates" in C++?
 
+They allow the user of the program to define something that the programmer has intentionally left ambiguous. 
+
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
