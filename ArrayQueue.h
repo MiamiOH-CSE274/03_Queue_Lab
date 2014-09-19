@@ -12,9 +12,9 @@ class ArrayQueue : public Queue <T> {
   // so if I do add, remove, add, remove, add, remove ...
   // even if I do it 10000000 times, your array should not grow.
   // The array should never grow unless numItems == backingArraySize
-  void add(T toAdd);
-  T remove();
-  unsigned long getNumItems();
+  virtual void add(T toAdd);
+  virtual T remove();
+  virtual unsigned long getNumItems();
 
   //Initialize all private member variables.
   // You initial backing array should be length 10. Allocate it
@@ -71,7 +71,10 @@ class ArrayQueue : public Queue <T> {
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
-	backingArray = new T[numItems];
+	backingArray = new T[START_SIZE];
+
+	front = 0;
+	backingArraySize = START_SIZE;
 }
 
 template <class T>
@@ -82,21 +85,12 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
-
-	//Creates a new array and adds the items to the last index
-	T* myNewArray = new T[numItems];
-	myNewArray[numItems - 1] = toAdd;
-
-	for (unsigned int i = 0; i<numItems - 1; i++){	//the indexes were of different types
-		myNewArray[i] = backingArray[i];
+	if (backingArraySize == numItems){
+		grow();
 	}
 
-	//this is delete[], not delete
-	//deletes the entire array of objects, follows a new[]
-	delete[] backingArray;	//backingArray still points to unallocated space, dangling pointer
-
-	backingArray = myNewArray;
+	backingArray[((front + numItems) % backingArraySize)] = toAdd;
+	numItems++;
 }
 
 template <class T>
@@ -105,18 +99,11 @@ T ArrayQueue<T>::remove(){
 		throw std::string("Queue is already empty, attempted to remove an element.");
 	}
 
+	T retVal = backingArray[front];
+
+	front = (front + 1) % backingArraySize;
+
 	numItems--;
-
-	T* myNewArray = new T[numItems];
-
-	T retVal = backingArray[0];
-
-	for (unsigned int i = 0; i<numItems; i++){
-		myNewArray[i] = backingArray[i + 1];
-	}
-
-	delete[] backingArray;
-	backingArray = myNewArray;
 
 	return retVal;
 }
@@ -128,17 +115,18 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
-	//should double the size of the array
-	//(front+numItems)%backingArraySize should get back to beginnning
-	if (numItems == backingArraySize){
-		T* myNewArray = new T[2 * numItems];
+	T* myNewArray = new T[2 * backingArraySize];
 
-		for (unsigned int i = 0; i<numItems; i++){
-			myNewArray[i] = backingArray[i];
-		}
-
-		delete[] backingArray;
-		backingArray = myNewArray;
+	for (unsigned int i = 0; i < backingArraySize; i++){
+		myNewArray[i] = backingArray[(front + i) % backingArraySize];
 	}
+	front = 0;
+
+	backingArray = myNewArray;
+	backingArraySize *= 2;
+
+	myNewArray = NULL;
+	delete[] myNewArray;
+	
 }
 
