@@ -79,6 +79,7 @@ template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
 	backingArray = new T[numItems];
+	backingArraySize = START_SIZE;
 
 }
 
@@ -91,22 +92,40 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	if (backingArraySize <= numItems) {
+		grow();
+		
+		unsigned long i = 0;
+		while (i < front) {
+			backingArray[backingArraySize + i] = backingArray[i];
+			i++;
+		}
+	} 
+
+	if (front + numItems > backingArraySize) {
+		backingArray[backingArraySize - (front + numItems)] = toAdd;
+	}
+
+	else {
+		backingArray[front + numItems] = toAdd;
+	}
+
 	numItems++;
 
-	//Make a new Array, put in the new item
+	/*//Make a new Array, put in the new item
 	T* myNewArray = new T[numItems];
 	myNewArray[numItems - 1] = toAdd;
 
 	//Copy over all the old items
 	for(unsigned int i = 0; i < numItems; i++) {
 		myNewArray[i] = backingArray[i];
-	}
+	} 
 
 	//This is delete[], not delete
 	delete[] backingArray;
 
 	//Update pointer
-	backingArray = myNewArray;
+	backingArray = myNewArray; */
 }
 
 template <class T>
@@ -117,8 +136,17 @@ T ArrayQueue<T>::remove(){
 	  }
 
 	  numItems--;
+
+	  T retVal = front;
+	  backingArray[front] = 0;
+
+	  front++;
+
+	  if (front >= backingArraySize) {
+		  front = 0;
+	  }
   
-	//Make a new array, put in the new item
+	/*//Make a new array, put in the new item
 	 T* myNewArray = new T[numItems];
 
 	 T retVal = backingArray[0];
@@ -129,7 +157,7 @@ T ArrayQueue<T>::remove(){
 	}
 
 	delete[] backingArray;
-	backingArray = myNewArray;
+	backingArray = myNewArray; */
 
 	return retVal;
 }
@@ -146,6 +174,7 @@ void ArrayQueue<T>::grow(){ //double the length of the array?
 		myNewArray[i] = backingArray[i];
 	}
 
+	backingArraySize *= 2;
 	delete[] backingArray;
 	backingArray = myNewArray;
 }
