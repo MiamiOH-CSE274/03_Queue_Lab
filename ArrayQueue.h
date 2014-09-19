@@ -15,7 +15,7 @@ class ArrayQueue : public Queue <T> {
   void add(T toAdd);
   T remove();
   unsigned long getNumItems();
-
+  
   //Initialize all private member variables.
   // You initial backing array should be length 10. Allocate it
   // using "new"
@@ -79,63 +79,69 @@ backingArraySize = START_SIZE;
 backingArray = new T[backingArraySize];
 }
 
+
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
 delete[] backingArray;
-//backingArray = NULL;
+backingArray = NULL;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
 
-numItems++;
-
-//make a new array, put in the new item
-T* myNewArray = new T[numItems];
-myNewArray[numItems-1] = toAdd;
-
-//copy over all the old items
-for (unsigned int i = 0; i < numItems-1; i++){
-myNewArray[i] = backingArray[i];
+	numItems++;
+//grow array if full
+if (numItems = backingArraySize)
+{
+grow();
 }
 
-//this is delete[] not delete
-delete[] backingArray;
-backingArray = myNewArray;
+//else add toAdd to the first available spot, modulo code from lecture
+backingArray[(front+numItems) % backingArraySize] = toAdd;
+
 }
 
 
 template <class T>
 T ArrayQueue<T>::remove(){
-if (numItems < 1){
+if (numItems < 1)
+{
 //bad news
 throw std::string("Queue is already empty, attempted to remove.");
 }
 
 numItems--;
-//make a new array, put in the new item
-T* myNewArray = new T[numItems];
-T retVal = backingArray[0];
 
-//copy over all the old items
-for (unsigned int i = 0; i < numItems; i++){
-myNewArray[i] = backingArray[i+1];
-}
+T retVal = backingArray[front];
+front = (front + 1) % backingArraySize;
 
-delete[] backingArray;
-backingArray = myNewArray;
 
 return retVal;
+
+
 }     
-     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
 	return numItems;
 }
 
+
 template <class T>
 void ArrayQueue<T>::grow(){
+
+T* biggerArray = new T[backingArraySize*2];
+
+//copy over old values
+for (unsigned int i = 0; i < numItems; i++){
+biggerArray[i] = backingArray[(i+front)% backingArraySize];
+}
+
+front = 0;
+delete[] backingArray;
+backingArray = biggerArray;
+backingArraySize = (backingArraySize*2);
+
 
 }
