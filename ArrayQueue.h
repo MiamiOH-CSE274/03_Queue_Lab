@@ -144,7 +144,7 @@ unsigned long ArrayQueue<T>::getNumItems(){
 }
 
 template <class T>
-T* ArrayQueue<T>::grow(){
+void ArrayQueue<T>::grow(){
 	int size = numItems * 2;
 	T* newArray = new T[size];
 	if (numItems == backingArraySize){
@@ -153,8 +153,8 @@ T* ArrayQueue<T>::grow(){
 		}
 		front = 0;
 	}
+	delete[] backingArray;
 	backingArray = newArray;
-	return newArray;
 }
 
 
