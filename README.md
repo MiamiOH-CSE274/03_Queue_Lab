@@ -28,23 +28,28 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. My remove takes O(1) time
+2. My add takes O(1) time except for when grow() is called
+3. Grow correctly works
+4. Grow takes O(n) time
+5. Destructor works properly
+6. GetNumItems is properly implemented
+7. Exception is thrown properly
+8. Array is circular 
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+We would keep all of the private methods and variables except for the front variable. This is because the front of the stack is always where variables are added, so the front is always at backingArray[0].
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+The idea of modulus was confusing at first, and it's purpose in this lab. I would make sure the students really understand why they're using it. 
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+Instead of "extends" you would use ":" so you would write class "ArrayQueue : extends" queue.
 
 #### 5. What is the purpose of "templates" in C++?
+Templates allow you to create code that will work with different data types.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+int* array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
