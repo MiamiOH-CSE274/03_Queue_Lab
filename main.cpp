@@ -1,3 +1,9 @@
+/* Created by Collin Ernst for use in Dr. Brinkman's 274 class. 
+ * All files written are original with algorithms provided from both
+ * Dr. Brinkman's lecture and Opendatastructures.org.
+ * Additional help with syntax provided by cplusplus.com.
+ * Anyone is free to save, modify, and upload this solution.
+ */
 #include "ArrayQueue.h"
 #include <iostream>
 
