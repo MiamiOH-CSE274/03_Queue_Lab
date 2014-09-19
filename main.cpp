@@ -1,3 +1,9 @@
+/* Created by Collin Ernst for use in Dr. Brinkman's 274 class. 
+ * All files written are original with algorithms provided from both
+ * Dr. Brinkman's lecture and Opendatastructures.org.
+ * Additional help with syntax provided by cplusplus.com.
+ * Anyone is free to save, modify, and upload this solution.
+ */
 #include "ArrayQueue.h"
 #include <iostream>
 
@@ -73,6 +79,7 @@ void testGrow(ArrayQueue<int>& testQueue){
 void testRemoveException(ArrayQueue<int>& testQueue){
   try {
     int t = testQueue.remove();
+
   } catch (std::string s) {
     std::cout << "SUCCESS: Caught exception: " << s << std::endl;
     return;
@@ -92,6 +99,6 @@ int main(){
   testAroundTheHorn(testQueue);
   testGrow(testQueue);
   testRemoveException(testQueue);
-
+  
   return 0;
 }

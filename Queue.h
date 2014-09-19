@@ -13,13 +13,13 @@ class Queue {
   // that we declare only the public methods of the Queue class,
   // but no data members, and no private methods. This is similar
   // to what we would do in a Java interface
-
+	
   //Syntax note: In C++ you don't put private/protected/public on each
   // individual member function or variable. Instead, we declare a section
   // as public, and now everything that comes afterward will be public, until
   // we chage it. See ArrayQueue.h for another example.
  public:
-
+	 
   //Add the input item to the back of the queue
   //If it is impossible to do so (perhaps your are out of memory)
   // then throw a string exception.

@@ -28,23 +28,35 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. Remove is implemented in a circular fashion, so Remove should take O(1) time.
+2. Add is implemented in a circular fashion, so Add should take O(1) time.
+3. The grow function is only called within the add function if the queue is full and it doubles the size.
+4. I am not sure how to calculate the runtime, but it is modeled after the example from openDataStructures.
+5. Both grow and the destructor do not leave either dangling pointers or memory leaks.  
+6. Simply returns the value, no calculations involved.
+7. I could not think of an illegal way to use the add function, but the remove function throws and exception if the queue is already empty.  
+8. The queue is implemented in a circular fashion.
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
+Using a Stack would require the same private methods and variables implemented in a queue, but the actual implementation would be slightly different.
+
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+
+I still an unsure about how to calculate the runtime of my functions, could you clarify in class on Tuesday?
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
+First make sure to #include "Queue.h", then to extend it use class ArrayQueue: public Queue.
+
 #### 5. What is the purpose of "templates" in C++?
+
+To provide a data structure that can be compatable with numerous different data types or objects.  
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
 
+int* myInts = new Int[10];
+
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+
+The destructor deletes refrences to memory that do not contain an object or objects that do not contain a pointer in order to conserve memory.  This is not necessary in java because java does not allow access to memory outside of what is allocated in the constructor.
