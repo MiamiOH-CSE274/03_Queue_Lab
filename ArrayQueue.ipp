@@ -59,21 +59,22 @@ T ArrayQueue<T>::remove(){
 	throw std::string("Queue is already empty, attempted to remove.");
 	 }
 
-	//make a new array, put in the new item
-	T* myNewArray = new T[numItems];
-
 	T retVal = backingArray[front];
-	front = backingArray[(front+numItems)%backingArraySize];
-	 for(unsigned int i=0; i<numItems; i++)
+	front = (front+1)%backingArraySize;
+	numItems--;
+
+	 return retVal;
+
+	/* 
+	//make a new array, put in the new item
+	T* myNewArray = new T[numItems]; 
+	for(unsigned int i=0; i<numItems; i++)
 		{
 			myNewArray[i] = backingArray[i+1];
 		 }
 
 	 delete[] backingArray;
-	 backingArray = myNewArray;
-
-  return retVal;
-
+	 backingArray = myNewArray;*/
 }
 
 template <class T>
