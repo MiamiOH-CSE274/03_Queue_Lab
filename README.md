@@ -41,7 +41,7 @@ Questions
 Everything but front should be kept. Stacks add to the front so having a variable for front is not needed. 
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-The whole idea of circular arrays was confusing at first. I think it should be covered in the begging as it seems like the key to the whole lab.
+The whole idea of circular arrays was confusing at first. I think it should be covered in the beggining as it seems like the key to the whole lab.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 : is used in C++ to mean the same thing as extends. ArrayQueue : Queue would be the way to write it in C++.
