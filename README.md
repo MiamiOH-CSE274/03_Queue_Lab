@@ -40,11 +40,18 @@ Questions
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+Start early on homework, and take notes during class. 
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+class ArrayQueue : public Queue <T>
 
 #### 5. What is the purpose of "templates" in C++?
+A template lets the user create a class of any type of data. By using "T" it doesn't restrict the class from
+being only strings, or ints, or floats, etc. Methods can return any type, and any type can be an input.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+int* arr = new arr[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+The deconstructor closes everything you opened or created. So, it deletes any remaining variables, 
+and "cleans up" once everything has run. The garabge collector is the deconstructor in java. The language cleans up for you.
