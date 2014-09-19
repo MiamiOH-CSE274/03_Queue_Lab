@@ -16,7 +16,9 @@
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems =0;
-	backingArray=new T[numItems];
+	front=0;
+	backingArray=new T[START_SIZE];
+	backingArraySize= START_SIZE;
 }
 
 template <class T>
@@ -28,21 +30,26 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
-	T* myNewArray = new T[numItems];	
-	myNewArray[numItems-1]=toAdd;
-	
-	//made a new array and put in a new item
-
-	//copy over old items
-	for(unsigned int i=0; i<numItems-1; i++)
+	//check to see if need more spice
+	if(backingArraySize<=numItems)
+	{ grow(); }
+	else
 	{
-		myNewArray[i]= backingArray[i];
-	}
+		backingArray[(front+numItems)%backingArraySize]=toAdd;
+		numItems++;
 
-	//this is delete[], not delete
-	delete[] backingArray;
-	backingArray=myNewArray;
+		/*T* myNewArray = new T[numItems];	
+		myNewArray[numItems-1]=toAdd;
+		//made a new array and put in a new item
+		//copy over old items
+		for(unsigned int i=0; i<numItems-1; i++)
+		{
+			myNewArray[i]= backingArray[i];
+		}
+		//this is delete[], not delete
+		delete[] backingArray;
+		backingArray=myNewArray;*/ 
+		}
 }
 
 template <class T>
@@ -52,13 +59,11 @@ T ArrayQueue<T>::remove(){
 	throw std::string("Queue is already empty, attempted to remove.");
 	 }
 
-	numItems--;
-
 	//make a new array, put in the new item
 	T* myNewArray = new T[numItems];
 
-	T retVal = backingArray[0];
-
+	T retVal = backingArray[front];
+	front = backingArray[(front+numItems)%backingArraySize];
 	 for(unsigned int i=0; i<numItems; i++)
 		{
 			myNewArray[i] = backingArray[i+1];
@@ -82,4 +87,16 @@ void ArrayQueue<T>::grow(){
 	//will make the array bigger
 	//front + numItems is first available space
 	//when near end of array (front+numItems)%backingArraySize
+
+	//making array twice as long
+	T* myNewArray = new T[START_SIZE*2];	
+
+	//putting old elements into new array
+	for(unsigned int i=0; i<numItems; i++)
+	{
+		myNewArray[i]= backingArray[i];
+	}
+	backingArraySize=START_SIZE*2;
+	delete[] backingArray;
+	backingArray=myNewArray;
 }
