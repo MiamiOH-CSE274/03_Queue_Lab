@@ -53,3 +53,4 @@ Templates allow you to create code that will work with different data types.
 int* array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+The destructor frees up the space that the object was using. Java doesn't use deconstructors because it has garbage collection. This means that it can automatically detect when stored data is no more useful and free it up. 
