@@ -1,3 +1,13 @@
+/*
+* Originality Statement:  The code for add(toAdd), remove(), and grow() are 
+* heavily based on the methods described in the book Open Data Structures
+* by Pat Morin.  The constructor, destructor, and getNumItems() were written
+* in Miami University's CSE 274 class with Dr. Bo Brinkman.
+*
+* Caroline Danzi
+* September 18, 2014
+*/
+
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
