@@ -42,7 +42,7 @@ Questions
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 I do not understand the notion of O(1), O(n), etc. time or how to determine the appropriate time a function takes. One piece of advice I would give to students next semester would be to take notes on the reading and really make sure you understand it. Doing that really helped me on this assignment and helped me better understand circular arrays and Array-Based Lists.
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
-To write the equivalent of "class ArrayQueue extends Queue" in C++, you would use the : operator.  For example, you would write "class ArrayQueue : public Queue <T>". In more general terms, the syntax is as follows: "class derivedClass : access-specifier baseClass". Source: http://www.tutorialspoint.com/cplusplus/cpp_inheritance.htm
+To write the equivalent of "class ArrayQueue extends Queue" in C++, you would write "class ArrayQueue : public Queue". In more general terms, the syntax is as follows: "class derivedClass : access-specifier baseClass". Source: http://www.tutorialspoint.com/cplusplus/cpp_inheritance.htm
 #### 5. What is the purpose of "templates" in C++?
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
