@@ -41,7 +41,7 @@ Questions
 We would get rid of the methods add and remove and use push and pop instead. This is because these are the methods you should use when working with a stack since it is FILO (First In Last Out).
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-Maybe go over O(1) and O(n) more in depth in class.
+What O(1) and O(n) mean in more depth.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 class ArrayQueue : Queue
