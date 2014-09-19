@@ -44,7 +44,8 @@ I do not understand the notion of O(1), O(n), etc. time or how to determine the 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 To write the equivalent of "class ArrayQueue extends Queue" in C++, you would write "class ArrayQueue : public Queue". In more general terms, the syntax is as follows: "class derivedClass : access-specifier baseClass". Source: http://www.tutorialspoint.com/cplusplus/cpp_inheritance.htm
 #### 5. What is the purpose of "templates" in C++?
-
+A template is used when you do not want to specify the data type of an object, return type, or parameter type. This allows for more flexibility in the code, because a user can use whatever data type they want in place of T (ex: int, String, etc.). "T" acts as a placeholder, and it is "filled in" with the correct type at run time.
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
-
+The syntax is as follows: int* arrayName = new int[10];
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+The destructor deallocates the memory used in the class to prevent memory leaks. It makes sure that there are no dangling pointers, which point to a space in memory that no longer holds an object, or a memory leak where the space in memory still holds an object but is no longer reachable. Java does not need the destructor because it has a "garbage collector" that looks at the heap and deletes objects that are not in use. Therefore, the deallocation of memory is automatic, so the programmer need not explicitly destruct the class. Source used: http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
