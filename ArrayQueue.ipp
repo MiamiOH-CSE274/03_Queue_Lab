@@ -15,30 +15,82 @@
 // ArrayQueue<T> class.
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
+	numItems = 0;
+	backingArraySize = 10;
+	backingArray = new T[backingArraySize];
 
 }
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	//Clean up after yourself
+	delete[] backingArray;
+	backingArray = NULL;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	if(numItems == backingArraySize)grow();
+	numItems++; 
+	
+	//make new array, put in the new item
+	T* myNewArray = new T[numItems];
+	myNewArray[numItems-1] = toAdd;
+
+	//copy over old items
+	for(unsigned int i=0; i<numItems-1; i++){
+		myNewArray[i] = backingArray[i];
+	}
+
+	//this is delete[], not delete
+	delete[] backingArray;
+
+	//update pointer
+	backingArray = myNewArray;
 
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
+	if(numItems < 1){
+		//Bad News
+		throw std::string("Queue is already empty, attempted to remove.");
+	}
+		numItems--;
+
+		//make a new aarray, put in the new item
+		T* myNewArray = new T[numItems];
+
+		T retVal = backingArray[0];
+
+		//Copy over the old items
+
+		for(unsigned int i=0;i<numItems;i++){
+			myNewArray[i] = backingArray[i+1];
+		}
+
+		delete[] backingArray;
+		backingArray = myNewArray;
+
+		return retVal;
+	
 }
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
+	return numItems;
 
 }
-
 template <class T>
 void ArrayQueue<T>::grow(){
+	    T* myNewArray = new T[backingArraySize*2];
 
+		//Copy over the old items
+
+		for(unsigned int i=0;i<numItems;i++){
+			myNewArray[i] = backingArray[i];
+		}
+
+		delete[] backingArray;
+		backingArray = myNewArray;
 }

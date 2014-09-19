@@ -43,7 +43,11 @@ Questions
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
+		class ArrayQueue : public Queue <T> 
+
 #### 5. What is the purpose of "templates" in C++?
+
+	Templates allow classes to have members that use template parameters as types.(cplusplus.com)
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
 
