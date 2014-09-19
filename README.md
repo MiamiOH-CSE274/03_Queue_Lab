@@ -32,15 +32,15 @@ Questions
 2. Add calls grow, so it takes O(n) time.
 3. I think this requirement was met. I only called grow() in the add method, and only if numItems == backingArraySize. Grow does create an array that is twice the size of the original.
 4. I think grow takes O(n) time. I followed the model in the book, which also takes O(n) time.
-5. As far as I can tell I am not leaking memory. The destructor deletes the backing array, and then takes care of the backingArray, which became a dangling pointer, by setting it to NULL.
+5. As far as I can tell I am not leaking memory. The destructor deletes the backing array, and then takes care of backingArray, which has become a dangling pointer, by setting it to NULL.
 6. I think getNumItems takes O(1) time. All it does is return a value.
-7. Remvoe throws an exception if there are no elements in the array. I am not sure what exceptions I should throw in add.
+7. Remove throws an exception if there are no elements in the array. I am not sure what exceptions I should throw in add.
 8. I did use a circular array. When adding and removing elements, I made sure that the elements could "wrap around" to the beginning as needed, and that the front would always point to the true front of the queue.
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-
+I do not understand the notion of O(1), O(n), etc. time or how to determine the appropriate time a function takes. One piece of advice I would give to students next semester would be to take notes on the reading and really make sure you understand it. Doing that really helped me on this assignment and helped me better understand circular arrays and Array-Based Lists.
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
 #### 5. What is the purpose of "templates" in C++?
