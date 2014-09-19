@@ -28,14 +28,22 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. remove() works and takes O(1) time because the operation time is relatively the same regardless of the size of the set
-2. add() works and takes O(1) time because the operation time is relatively the same regardless of the size of the set
+1. remove() passes the tests but I am unsure about the O(1) operation time.
+2. add() passes the tests but I am unsure about the O(1) operation time.
+
 3. grow works because it passed the tests and is only called when numItems = backingArraySize because I coded it that way;
+
 4. grow takes O(n) time because its operation time depends on the size of the set.
+
 5. Any array I created with new was either erased with delete[] or was erased after the scope of its operation ended
+
 6. getNumItems works and is a single operation that returns an integer.
+
 7. When numItems = backingArraySize, add() calls the function grow(). When numItems < 1, remove() throws an exception
-8. TODO
+
+8. I am still unsure of the concept of circular fashion because I don't yet understand how it is condusive to an O(1)operation time. I tried to revise my add() and remove() functions
+into a way that was "circular", or at least what I grasped of "circular" in class. However in each function I was unable to keep it circular without shifting the elements
+in the array which requires a "for" loop, which to me, contradicts the idea of having an operation that stays consistent in timing regardless of the set size.
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
@@ -45,7 +53,7 @@ Questions
 #### 3. What is one question that confused you about this exercise, or one piece of advice you would share with students next semester?
 	 I read on Stack Overflow that O(1) essentially means that an operation takes a consistent amount of time to complete, whereas O(n) means that the operation takes
 	up time relative to the size of the set. If operations are happening in nano seconds, how to we determine if things are happening consistenly or relative to the size
-	their set? I would assume you could determine it based on how you wrote the code. I'm pretty sure my add and remove functions take O(1) time but I am unsure.
+	their set? I would assume you could determine it based on how you wrote the code. I'm pretty sure my add and remove functions take O(1) time but I am unsure about the functions in my code.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
