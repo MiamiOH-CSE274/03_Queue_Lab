@@ -81,6 +81,9 @@ template <class T>
 ArrayQueue<T>::~ArrayQueue() {
 	delete[] backingArray;
 	backingArray = NULL;
+	front = 0;
+	numItems = 0;
+	backingArraySize = 0;
 }
 
 template <class T>
