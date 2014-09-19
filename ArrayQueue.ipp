@@ -25,7 +25,9 @@ ArrayQueue<T>::ArrayQueue(){
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	//cleanup after yourself
+	delete[] backingAray;
+	backingArray = NULL;
 }
 
 template <class T>
@@ -51,6 +53,11 @@ void ArrayQueue<T>::add(T toAdd){
 
 template <class T>
 T ArrayQueue<T>::remove(){
+	if(numItems < 1) {
+		//Bad news
+		throw std::string("Queue is already empty, attempted to remove.");
+	}
+	
 	numItems--;
 
 	//Make a new array, put in the new items
