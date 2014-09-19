@@ -78,6 +78,7 @@ class ArrayQueue : public Queue <T> {
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
+	front = 0;
 	backingArray = new T[numItems];
 	backingArraySize = START_SIZE;
 
@@ -92,7 +93,7 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	if (backingArraySize <= numItems) {
+	if (backingArraySize == numItems) {
 		grow();
 		
 		unsigned long i = 0;
@@ -102,15 +103,10 @@ void ArrayQueue<T>::add(T toAdd){
 		}
 	} 
 
-	if (front + numItems > backingArraySize) {
-		backingArray[backingArraySize - (front + numItems)] = toAdd;
-	}
-
-	else {
-		backingArray[front + numItems] = toAdd;
-	}
+	backingArray[(front + numItems) % backingArraySize] = toAdd;
 
 	numItems++;
+
 
 	/*//Make a new Array, put in the new item
 	T* myNewArray = new T[numItems];
@@ -137,14 +133,10 @@ T ArrayQueue<T>::remove(){
 
 	  numItems--;
 
-	  T retVal = front;
+	  T retVal = backingArray[front];
 	  backingArray[front] = 0;
 
-	  front++;
-
-	  if (front >= backingArraySize) {
-		  front = 0;
-	  }
+	  front = (front + 1) % backingArraySize;
   
 	/*//Make a new array, put in the new item
 	 T* myNewArray = new T[numItems];
