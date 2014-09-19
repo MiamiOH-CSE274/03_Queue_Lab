@@ -3,7 +3,9 @@
 //Date: 2013/06/26
 #include "Queue.h"
 
+// Template class - fill-in-the-blanks
 template <class T>
+// ArrayQueue extends Queue
 class ArrayQueue : public Queue <T> {
  public:
   //See Queue.h for documentation of these methods
@@ -12,16 +14,18 @@ class ArrayQueue : public Queue <T> {
   // so if I do add, remove, add, remove, add, remove ...
   // even if I do it 10000000 times, your array should not grow.
   // The array should never grow unless numItems == backingArraySize
-  void add(T toAdd);
-  T remove();
-  unsigned long getNumItems();
+  virtual void add(T toAdd);
+  virtual T remove();
+  virtual unsigned long getNumItems();
 
   //Initialize all private member variables.
   // You initial backing array should be length 10. Allocate it
   // using "new"
+  // Constructor
   ArrayQueue();
   //Delete any dynamically allocated memory. If you are deleting
   // an array, be sure to use "delete[]" instead of "delete"
+  // Destructor
   virtual ~ArrayQueue();
 
  private:
