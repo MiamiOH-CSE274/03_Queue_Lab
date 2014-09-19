@@ -28,14 +28,14 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. I think remove takes O(1) time because I wrote it according to what the book described. I do not really understand the big-oh notation, so expect to see me in office hours soon.
+2. Add calls grow, so it takes O(n) time.
+3. I think this requirement was met. I only called grow() in the add method, and only if numItems == backingArraySize. Grow does create an array that is twice the size of the original.
+4. I think grow takes O(n) time. I followed the model in the book, which also takes O(n) time.
+5. As far as I can tell I am not leaking memory. The destructor deletes the backing array, and then takes care of the backingArray, which became a dangling pointer, by setting it to NULL.
+6. I think getNumItems takes O(1) time. All it does is return a value.
+7. Remvoe throws an exception if there are no elements in the array. I am not sure what exceptions I should throw in add.
+8. I did use a circular array. When adding and removing elements, I made sure that the elements could "wrap around" to the beginning as needed, and that the front would always point to the true front of the queue.
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
