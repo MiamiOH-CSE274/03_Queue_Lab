@@ -78,5 +78,21 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
-	
+	// create a new, larger array to store the values
+	T* largerArray = new T[backingArraySize*2];
+
+	// copy the elements from backingArray into the new array
+	for(unsigned int i = 0; i < numItems; i++){
+		largerArray[i] = backingArray[(front+i)%backingArraySize];
+	}
+
+	// Move the front to the start of the new array
+	front = 0;
+
+	// Double backingArraySize to match the current size of the array
+	backingArraySize *= 2;
+
+	// Delete the old array and make backingArray point to the new array
+	delete[] backingArray;
+	backingArray = largerArray;
 }
