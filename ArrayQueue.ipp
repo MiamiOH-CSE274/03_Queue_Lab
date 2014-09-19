@@ -7,6 +7,7 @@
 // Notice, however, that START_SIZE is NOT a variable! Instead, any
 // place that the pre-processor sees "START_SIZE" it will replace it with
 // 10 ... so this is like a global "find and replace".
+
 #define START_SIZE 10
 
 //Syntax note: C++ is not very good at figuring out which methods belong

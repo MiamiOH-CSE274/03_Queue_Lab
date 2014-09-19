@@ -37,7 +37,9 @@ Questions
 7. TODO
 8. TODO
 
-#### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+
+	We would keep backingArray, backingArraySize, numItems, and grow(). You could get rid of front. The reason you wouldn't need front is because the thing that front represents is just the location of the first element of backingArray (or backingArray[0], for clarity's sake).
 
 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
