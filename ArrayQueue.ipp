@@ -15,30 +15,71 @@
 // ArrayQueue<T> class.
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
-
+	numItems =0;
+	backingArray=new T[numItems];
 }
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	//clean up
+	delete[] backingArray;
+	backingArray= NULL;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
+	numItems++;
+	T* myNewArray = new T[numItems];	
+	myNewArray[numItems-1]=toAdd;
+	
+	//made a new array and put in a new item
 
+	//copy over old items
+	for(unsigned int i=0; i<numItems-1; i++)
+	{
+		myNewArray[i]= backingArray[i];
+	}
+
+	//this is delete[], not delete
+	delete[] backingArray;
+	backingArray=myNewArray;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
+	if(numItems<1)
+	{ //bad news!
+	throw std::string("Queue is already empty, attempted to remove.");
+	 }
+
+	numItems--;
+
+	//make a new array, put in the new item
+	T* myNewArray = new T[numItems];
+
+	T retVal = backingArray[0];
+
+	 for(unsigned int i=0; i<numItems; i++)
+		{
+			myNewArray[i] = backingArray[i+1];
+		 }
+
+	 delete[] backingArray;
+	 backingArray = myNewArray;
+
+  return retVal;
+
 }
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-
+	return numItems;
 }
 
 template <class T>
 void ArrayQueue<T>::grow(){
-
+	//call this when you need more space (double size of array)
+	//will make the array bigger
+	//front + numItems is first available space
+	//when near end of array (front+numItems)%backingArraySize
 }
