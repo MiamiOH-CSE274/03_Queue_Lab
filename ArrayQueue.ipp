@@ -1,3 +1,6 @@
+//Originality: All code in this class is entirely original with small amounts of
+// web research on StackOverflow.
+
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
