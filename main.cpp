@@ -1,6 +1,7 @@
 #include "ArrayQueue.h"
 #include <iostream>
 
+
 //Check to make sure that numItems returns correct result on a fresh
 // instance of the ArrayQueue class
 void testCtor(ArrayQueue<int>& testQueue){

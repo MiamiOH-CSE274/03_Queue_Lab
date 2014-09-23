@@ -1,3 +1,6 @@
+//Originality: All code in this class is entirely original with small amounts of
+// web research on StackOverflow.
+
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
@@ -15,30 +18,51 @@
 // ArrayQueue<T> class.
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
-
+	front = 0;
+	numItems = 0;
+	backingArraySize = START_SIZE;
+	backingArray = new T[backingArraySize];
 }
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-
+	delete[] backingArray;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-
+	if (numItems == backingArraySize){
+		grow();
+		}
+	backingArray[(front + numItems) % backingArraySize] = toAdd;
+	numItems++;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-  
+	if (numItems == 0)
+		throw std::string("Cannot remove from empty queue");
+  T ret = backingArray[front % backingArraySize];
+  front++;
+  numItems--;
+  return ret;
 }
 
 template <class T>
 unsigned long ArrayQueue<T>::getNumItems(){
-
+	return numItems;
 }
 
 template <class T>
 void ArrayQueue<T>::grow(){
+	
+	T* newArray = new T[backingArraySize * 2];
+	for (unsigned int i = 0; i < backingArraySize; i++)
+		newArray[i] = backingArray[(i + front) % backingArraySize];
+	backingArraySize *= 2;
+	front= 0;
+	delete[] backingArray;
+	backingArray = newArray;
+	
 
 }
