@@ -1,3 +1,5 @@
+//Referenced the readings and got help from Katie Hockman (an older student at Miami)
+
 #include "ArrayQueue.h"
 #include <iostream>
 
