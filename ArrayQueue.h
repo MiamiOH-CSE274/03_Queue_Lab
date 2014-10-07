@@ -88,7 +88,7 @@ template <class T>
 ArrayQueue<T>::~ArrayQueue() {
 	//cleanup after yourself
 	delete[] backingArray;
-	backingArray = NULL;
+	//backingArray = NULL;
 }
 
 template <class T>
@@ -160,13 +160,13 @@ unsigned long ArrayQueue<T>::getNumItems(){
 }
 
 template <class T>
-void ArrayQueue<T>::grow(){ //double the length of the array?
-	T* myNewArray = new T[numItems*2];
-	for (unsigned int i = 0; i < numItems; i++) {
-		myNewArray[i] = backingArray[i];
+void ArrayQueue<T>::grow(){ //double the length of the array
+	T* oldBackingArray = backingArray;
+	backingArraySize *= 2;
+	backingArray = new T[backingArraySize];
+	for (unsigned int i = 0; i < backingArraySize/2; i++) {
+		backingArray[i] = oldBackingArray[i];
 	}
 
-	backingArraySize *= 2;
-	delete[] backingArray;
-	backingArray = myNewArray;
+	delete[] oldBackingArray;
 }
