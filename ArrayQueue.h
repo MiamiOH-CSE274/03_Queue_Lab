@@ -12,9 +12,9 @@ class ArrayQueue : public Queue <T> {
   // so if I do add, remove, add, remove, add, remove ...
   // even if I do it 10000000 times, your array should not grow.
   // The array should never grow unless numItems == backingArraySize
-  void add(T toAdd);
-  T remove();
-  unsigned long getNumItems();
+  virtual void add(T toAdd);
+  virtual T remove();
+  virtual unsigned long getNumItems();
 
   //Initialize all private member variables.
   // You initial backing array should be length 10. Allocate it
@@ -53,4 +53,85 @@ class ArrayQueue : public Queue <T> {
  * source code for the whole class.
  *
  **/
-#include "ArrayQueue.ipp"
+
+
+//You will need this so you can make a string to throw in
+// remove
+#include <string>
+
+//Syntax note: This uses the pre-processor to create a constant
+// You could also use "const static" to make a constant, as in Java.
+// Notice, however, that START_SIZE is NOT a variable! Instead, any
+// place that the pre-processor sees "START_SIZE" it will replace it with
+// 10 ... so this is like a global "find and replace".
+#define START_SIZE 10
+
+//Syntax note: C++ is not very good at figuring out which methods belong
+// to which classes. That is why we have to use the scope operator to
+// tell the compiler that this ArrayQueue() method belongs to the
+// ArrayQueue<T> class.
+template <class T>
+ArrayQueue<T>::ArrayQueue(){
+	numItems = 0;
+	front = 0;
+	backingArraySize = START_SIZE;
+	backingArray = new T[backingArraySize];
+
+}
+
+template <class T>
+ArrayQueue<T>::~ArrayQueue() {
+	//Clean up after yourself
+	delete[] backingArray;
+	backingArray = NULL;
+}
+
+template <class T>
+void ArrayQueue<T>::add(T toAdd){
+	if(numItems == backingArraySize){ grow();
+	}
+	
+	
+	backingArray[((front+numItems) % backingArraySize)] = toAdd; 
+	numItems++;
+}
+
+template <class T>
+T ArrayQueue<T>::remove(){
+	
+	
+	if(numItems < 1){
+		//Bad News
+		throw std::string("Queue is already empty, attempted to remove.");
+	}
+	
+
+	T retVal = backingArray[front];
+	
+	front = (front + 1) % backingArraySize;
+	numItems--;
+	
+	return retVal;
+	
+}
+
+template <class T>
+unsigned long ArrayQueue<T>::getNumItems(){
+	return numItems;
+
+}
+template <class T>
+void ArrayQueue<T>::grow(){
+	   
+		 unsigned int newSize = backingArraySize*2;
+		 T* myNewArray = new T[newSize];
+
+		//Copy over the old items
+		 for(unsigned int i=0; i<backingArraySize; i++){
+			myNewArray[i] = backingArray[(front + i) % backingArraySize];
+		}
+
+		backingArray = myNewArray;
+		backingArraySize = newSize;
+		front = 0;
+}

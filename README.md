@@ -29,6 +29,7 @@ Questions
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
 1. remove() passes the tests but I am unsure about the O(1) operation time.
+
 2. add() passes the tests but I am unsure about the O(1) operation time.
 
 3. grow works because it passed the tests and is only called when numItems = backingArraySize because I coded it that way;
