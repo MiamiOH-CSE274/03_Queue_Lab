@@ -60,22 +60,6 @@ T ArrayQueue<T>::remove(){
 
 	numItems--;
 
-	/*
-    //Make a new array, put in the new items
-	T* myNewArray = new T[numItems];
-
-	//Saves the value that we will be returning
-	T retVal = backingArray[0];
-
-	//Copy over the contents of the old array, starting from position 1
-	for(unsigned int i=0; i<numItems; i++) {
-		myNewArray[i] = backingArray[i+1];
-	}
-
-	delete[] backingArray;
-	backingArray = myNewArray;
-    */
-
 	return retVal;
 }
 
@@ -87,7 +71,7 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
-    unsigned int newSize = backingArray*2;
+    unsigned int newSize = (backingArraySize)*2;
     
     T* myNewArray = new T[newSize];
     
