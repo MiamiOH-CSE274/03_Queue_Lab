@@ -39,28 +39,28 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
-    
-    if(numItems > backingArraySize) {
+    if(numItems > backingArraySize/2) {
         grow();
     }
 
 	backingArray[(front + numItems)%backingArraySize] = toAdd;
+    numItems++;
 }
 
 template <class T>
 T ArrayQueue<T>::remove(){
-	if(numItems < 1) {
+	if(numItems == 0) {
 		//Bad news
 		throw std::string("Queue is already empty, attempted to remove.");
 	}
-	
-    T retVal = backingArray[front];
-    front = (front + 1)%backingArraySize;
+	else {
+        T retVal = backingArray[front];
+        front = (front + 1)%backingArraySize;
 
-	numItems--;
+        numItems--;
 
-	return retVal;
+        return retVal;
+    }
 }
 
 template <class T>
