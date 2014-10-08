@@ -17,7 +17,7 @@ public:
 	virtual unsigned long getNumItems();
 
 	//Initialize all private member variables.
-	// You initial backing array should be length 10. Allocate it
+	// Your initial backing array should be length 10. Allocate it
 	// using "new"
 	ArrayQueue();
 	//Delete any dynamically allocated memory. If you are deleting
@@ -86,7 +86,7 @@ void ArrayQueue<T>::add(T toAdd){
 	numItems++;
 	if (numItems == backingArraySize){
 		T* newArray = new T[];
-		newArray = backingArray.grow();
+		grow();
 		newArray[numItems - 1] = toAdd;
 
 		//Copy old array into new array
@@ -122,8 +122,7 @@ T ArrayQueue<T>::remove(){
 	if (numItems < 1) {
 		throw std::string("Queue is already empty.");
 	}
-	numItems--;
-
+	
 	T* newArray = new T[numItems];
 
 	T retVal = backingArray[0];
@@ -135,6 +134,8 @@ T ArrayQueue<T>::remove(){
 	delete[] backingArray;
 	backingArray = newArray;
 
+	numItems--;
+
 	return retVal;
 }
 
@@ -145,7 +146,7 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
-	int size = numItems * 2;
+	unsigned int size = numItems * 2;
 	T* newArray = new T[size];
 	if (numItems == backingArraySize){
 		for (unsigned int i = 0; i < size; i++){

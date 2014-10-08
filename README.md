@@ -28,14 +28,14 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. I think this should work
-2. this one would work if I could figure out how to implement grow
-3. I think this should work
-4. I am unsure on this
-5. I think think I've accomplished this
-6. I'm pretty sure this works
+1. remove works like it should
+2. add works like it should
+3. grow does what its supposed to
+4. I think grow is linear time
+5. grow does the right thing; I think the destructor does as well
+6. this works properly
 7. remove throws an exception. im not sure why add would need to throw an exception
-8. i am unsure about this as well
+8. this works!
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
@@ -51,7 +51,7 @@ ArrayQueue::Queue
 templates are used to create classes for objects where the object can be of any type. this allows you to makes classes for various types of objects
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
-Array ints = new Array[10];
+array<int, 10> newArray;
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
 i believe the destructor gets rid of an array(or space in memory) that is no longer being used. therefore java would not need this because java does this automatically
