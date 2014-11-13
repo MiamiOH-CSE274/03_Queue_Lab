@@ -91,28 +91,14 @@ ArrayQueue<T>::~ArrayQueue() {
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
 
 	if(numItems == backingArraySize){
 		grow();
 	}
 
-	backingArray[(front+numItems)%backingArraySize] = toAdd;
+	backingArray[(front+numItems) % backingArraySize] = toAdd;
 
-	//the old slow way
-	//Make a new array, put in the new item
-	//T* myNewArray = new T[numItems];
-	//myNewArray[numItems-1] = toAdd;
-
-	//Copy over the old items
-	//for(unsigned int i=0; i<numItems-1; i++){
-	//	myNewArray[i] = backingArray[i];
-	//}
-	//
-	//This is delete[], not delete
-	//delete[] backingArray;
-	//backingArray = myNewArray;
-
+	numItems++;
 }
 
 template <class T>
@@ -122,29 +108,14 @@ T ArrayQueue<T>::remove(){
 		//bad stuff!
 		throw std::string("Queue is already empty!");
 	}
-	front = (front+1)%backingArraySize;
+
+	T removedNumber = backingArray[front];
+
+	front = (front+1) % backingArraySize;
+
 	numItems--;
-	if(numItems == 0)
-		front = 0;
 
-
-
-		/*Old Way
-		//Make a new array, put in the new item
-		T* myNewArray = new T[numItems];
-
-		T retVal = backingArray[0];
-
-		Copy over the old items
-		for(unsigned int i=0; i<numItems; i++){
-			myNewArray[i] = backingArray[i+1];
-		}
-
-		delete[] backingArray;
-		backingArray = myNewArray;
-
-		return retVal;*/
-	
+	return removedNumber;
 }
 
 template <class T>
