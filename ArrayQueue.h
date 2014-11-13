@@ -127,14 +127,16 @@ template <class T>
 //Tip: double the array length when growing
 void ArrayQueue<T>::grow(){
 	T* grownArray = new T[(backingArraySize * 2)];
-	backingArraySize = (backingArraySize * 2);
+	
 
 	for(unsigned int i=0; i<numItems; i++)
 		grownArray[i] = backingArray[(front+i)%backingArraySize];
 
-	delete[] backingArray;
-	backingArray = grownArray;
+	backingArraySize = (backingArraySize * 2);
+
 	front = 0;
 
+	delete[] backingArray;
+	backingArray = grownArray;
 }
 
