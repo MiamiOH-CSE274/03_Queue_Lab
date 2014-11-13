@@ -59,4 +59,4 @@ Questions
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
 
-				The purpose of a class destructor is to free up resources (aka memory) that the object was using during its existence. This is not needed in Java because Java does not allow the programmer to fiddle with the memory directly like C++ does and more importantly Java has automatic garbage collection. 
+				The purpose of a class destructor is to free up resources (aka memory) that the object was using during its existence. This is not needed in Java because Java does not allow the programmer to fiddle with the memory directly like C++ does. 
