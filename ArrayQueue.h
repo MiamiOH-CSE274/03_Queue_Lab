@@ -53,11 +53,12 @@ class ArrayQueue : public Queue <T> {
  * source code for the whole class.
  *
  **/
+
 //Kyle Busdieker
 //Prof. Brinkman
 //CSE 274
 //Date: September 18, 2014
-//This code was created Bo Brinkman and modified by Kyle Busdieker
+//The skeleton code was created Bo Brinkman and modified by Kyle Busdieker with help from other students and the internet.
 
 //You will need this so you can make a string to throw in
 // remove
@@ -85,6 +86,7 @@ ArrayQueue<T>::ArrayQueue(){
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
 	delete[] backingArray;
+	backingArray = NULL;
 }
 
 template <class T>
@@ -92,7 +94,7 @@ void ArrayQueue<T>::add(T toAdd){
 	numItems++;
 
 	if(numItems == backingArraySize){
-		ArrayQueue<T>().grow();
+		grow();
 	}
 
 	backingArray[(front+numItems)%backingArraySize] = toAdd;
