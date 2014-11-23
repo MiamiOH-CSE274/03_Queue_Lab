@@ -24,7 +24,7 @@ template <class T>
 ArrayQueue<T>::~ArrayQueue() {
 	//clean up
 	delete[] backingArray;
-//	backingArray= NULL;
+	backingArray= NULL;
 }
 
 template <class T>
@@ -49,17 +49,6 @@ T ArrayQueue<T>::remove(){
 	numItems--;
 
 	 return retVal;
-
-	/* 
-	//make a new array, put in the new item
-	T* myNewArray = new T[numItems]; 
-	for(unsigned int i=0; i<numItems; i++)
-		{
-			myNewArray[i] = backingArray[i+1];
-		 }
-
-	 delete[] backingArray;
-	 backingArray = myNewArray;*/
 }
 
 template <class T>
@@ -70,11 +59,7 @@ unsigned long ArrayQueue<T>::getNumItems(){
 template <class T>
 void ArrayQueue<T>::grow(){
 	//call this when you need more space (double size of array)
-	//will make the array bigger
 	//front + numItems is first available space
-	//when near end of array (front+numItems)%backingArraySize
-
-
 
 	//making array twice as long
 	unsigned int doubleSize = backingArraySize*2;
