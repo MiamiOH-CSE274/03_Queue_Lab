@@ -62,22 +62,6 @@ T ArrayQueue<T>::remove(){
 	front = (front + 1)%backingArraySize;
 	numItems--;
 	return ret;
-	
-	/*//make new array
-	T* myNewArray = new T[numItems];
-
-	T ret = backingArray[0];
-
-	copy old array 
-	for(unsigned int i=0;i<numItems;i++)	{
-		myNewArray[i] = backingArray[i + 1];
-		}
-	
-	delete[] backingArray;
-	backingArray =  myNewArray;
-	return ret;
-	*/
-	//( front + numItems ) % backingarraysize
 }
 
 template <class T>
