@@ -87,11 +87,13 @@ void testRemoveException(ArrayQueue<int>& testQueue){
 //A simple main function which creates a queue, and tests it.
 int main(){
   ArrayQueue<int> testQueue;
+  //puts int into t
   testCtor(testQueue);
   testAddRemove(testQueue);
   testAroundTheHorn(testQueue);
   testGrow(testQueue);
   testRemoveException(testQueue);
+
 
   return 0;
 }
