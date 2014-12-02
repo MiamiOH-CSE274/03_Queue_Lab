@@ -59,11 +59,7 @@ T ArrayQueue<T>::remove(){
 	}
 	
 	T ret = backingArray[front];
-	front += 1;
-	if (front == backingArraySize)
-	{
-		front = (front + numItems) % backingArraySize;
-	}
+	front = (front + 1)%backingArraySize;
 	numItems--;
 	return ret;
 	
