@@ -122,20 +122,14 @@ void ArrayQueue<T>::grow(){
 	int backingArraySizeNew = backingArraySize * 2;
 
 	T* tempArray = new T[backingArraySizeNew];
-	
-	//std::cout << "Start Debug" << std::endl;
 
 	for(unsigned int i=front; i<backingArraySize; i++){
 		tempArray[i-front] = backingArray[i];
-		//std::cout << "# to copy: " << i << " : to spot: " << i-front << std::endl;
 	}
 
 	for(unsigned int i=1; i<front+1; i++){
 		tempArray[front+i+3] = backingArray[i-1];
-		//std::cout << "# to copy: " << i-1 << " : to spot: " << front+i+3 << std::endl;
 	}
-
-	//std::cout << "End Debug" << std::endl;
 
 	delete[] backingArray;
 
