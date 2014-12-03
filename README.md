@@ -28,23 +28,29 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. works
+2. works
+3. works
+4. works
+5. I think that this works but I'm not entirely sure. Still a little fuzzy on this topic.
+6. works
+7. works
+8. works
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+We would get rid of the methods add and remove and use push and pop instead. This is because these are the methods you should use when working with a stack since it is FILO (First In Last Out).
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+What O(1) and O(n) mean in more depth.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+class ArrayQueue : Queue
 
 #### 5. What is the purpose of "templates" in C++?
+Allows you to use different data types in classes or methods without rewriting each class or method. This is helpful if you don't know what type of data the input is going to be.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+int* newArray = new int[10]
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+The purpose of a class destructor is to clean up what you have made. This frees up space for you to work with by getting rid of what was allocated to memory while running the program. These are not needed in Java because Java does that for you once you are done with the program.
