@@ -79,8 +79,9 @@ template <class T>
 ArrayQueue<T>::ArrayQueue(){
 	numItems = 0;
 	front = 0;
-	backingArray = new T[numItems];
 	backingArraySize = START_SIZE;
+	backingArray = new T[backingArraySize];
+	
 
 }
 
@@ -133,11 +134,13 @@ unsigned long ArrayQueue<T>::getNumItems(){
 template <class T>
 void ArrayQueue<T>::grow(){ //double the length of the array
 	T* oldBackingArray = backingArray;
-	backingArraySize *= 2;
-	backingArray = new T[backingArraySize];
-	for (unsigned int i = 0; i < backingArraySize/2; i++) {
+	
+	backingArray = new T[backingArraySize*2];
+	for (unsigned int i = 0; i < backingArraySize; i++) {
 		backingArray[i] = oldBackingArray[(i + front) % backingArraySize];
 	}
 
+	backingArraySize *= 2;
+	front = 0;
 	delete[] oldBackingArray;
 }
