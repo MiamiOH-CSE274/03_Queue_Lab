@@ -134,12 +134,10 @@ unsigned long ArrayQueue<T>::getNumItems(){
 template <class T>
 void ArrayQueue<T>::grow(){ //double the length of the array
 	T* oldBackingArray = backingArray;
-	
 	backingArray = new T[backingArraySize*2];
 	for (unsigned int i = 0; i < backingArraySize; i++) {
 		backingArray[i] = oldBackingArray[(i + front) % backingArraySize];
 	}
-
 	backingArraySize *= 2;
 	front = 0;
 	delete[] oldBackingArray;
