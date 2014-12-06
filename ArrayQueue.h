@@ -5,42 +5,42 @@
 
 template <class T>
 class ArrayQueue : public Queue <T> {
- public:
-  //See Queue.h for documentation of these methods
+public:
+    //See Queue.h for documentation of these methods
+    
+    //This class MUST use the "circular" array concept,
+    // so if I do add, remove, add, remove, add, remove ...
+    // even if I do it 10000000 times, your array should not grow.
+    // The array should never grow unless numItems == backingArraySize
+    void add(T toAdd);
+    T remove();
+    unsigned long getNumItems();
+    
+    //Initialize all private member variables.
+    // You initial backing array should be length 10. Allocate it
+    // using "new"
+    ArrayQueue();
+    //Delete any dynamically allocated memory. If you are deleting
+    // an array, be sure to use "delete[]" instead of "delete"
+    virtual ~ArrayQueue();
+    
+private:
+    //If the backing array is too small, you may call this function.
+    // It should create a new backing array twice as big as the old one,
+    // and copy over the old data into the new array. It should finish
+    // off by calling delete[] on the old backing array
+    void grow();
+    
+    //Pointer to the array that we are using to store the queue
+    T* backingArray;
+    
+    //The index in T where the front of the queue is.
+    unsigned long front;
+    //Number of items in the queue
+    unsigned long numItems;
 
-  //This class MUST use the "circular" array concept,
-  // so if I do add, remove, add, remove, add, remove ...
-  // even if I do it 10000000 times, your array should not grow.
-  // The array should never grow unless numItems == backingArraySize
-  void add(T toAdd);
-  T remove();
-  unsigned long getNumItems();
-
-  //Initialize all private member variables.
-  // You initial backing array should be length 10. Allocate it
-  // using "new"
-  ArrayQueue();
-  //Delete any dynamically allocated memory. If you are deleting
-  // an array, be sure to use "delete[]" instead of "delete"
-  virtual ~ArrayQueue();
-
- private:
-  //If the backing array is too small, you may call this function.
-  // It should create a new backing array twice as big as the old one,
-  // and copy over the old data into the new array. It should finish
-  // off by calling delete[] on the old backing array
-  void grow();
-
-  //Pointer to the array that we are using to store the queue
-  T* backingArray;
-  
-  //The index in T where the front of the queue is.
-  unsigned long front;
-  //Number of items in the queue
-  unsigned long numItems;
-
-  //Number of spaces in the array pointed to by backingArray
-  unsigned long backingArraySize;
+    //Number of spaces in the array pointed to by backingArray
+    unsigned long backingArraySize;
 };
 
 /***
@@ -53,6 +53,9 @@ class ArrayQueue : public Queue <T> {
  * source code for the whole class.
  *
  **/
+/*****************************
+ * Originally ArrayQueue.ipp *
+ ****************************/
 //You will need this so you can make a string to throw in
 // remove
 #include <string>
@@ -63,12 +66,6 @@ class ArrayQueue : public Queue <T> {
 // place that the pre-processor sees "START_SIZE" it will replace it with
 // 10 ... so this is like a global "find and replace".
 #define START_SIZE 10
-
-//Told not to do, but I'm declaring global variables used in keeping
-//track of stuff in the array.  Unsure of how without editing the
-//files we were told not to change
-unsigned int front;
-unsigned int backingArraySize;
 
 //Syntax note: C++ is not very good at figuring out which methods belong
 // to which classes. That is why we have to use the scope operator to
@@ -131,7 +128,7 @@ void ArrayQueue<T>::grow(){
     T* myNewArray = new T[newSize];
     
     for(int i=0; i<backingArraySize; i++) {
-        myNewArray[i] = (backingArray[front+i]%backingArraySize);
+        myNewArray[i] = (backingArray[(front+i)%backingArraySize]);
     }
     
     backingArraySize = newSize;
