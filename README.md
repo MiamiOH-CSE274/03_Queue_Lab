@@ -28,23 +28,25 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. Remove should work correctly.
+2. add should work correctly.
+3. grow should only be called if it needs to be called.
+4. grow should take the proper amount of time to double its size.
+5. the destructor should delete the old data properly.
+6. getNumItems should work correctly
+7. Exceptions are caught in the code as shown in the testRemoveException code.
+8. Subtracting from the array seems to be causing problems for the array
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+For a stack we would need to change the remove method to draw from the top and become LIFO instead of FIFO. everything else we would be able to keep.
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
-
+My greatest difficulty resides in fixing my remove method.
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
-
+class ArrayQueue : Queue<T>
 #### 5. What is the purpose of "templates" in C++?
-
+the purpose of templates in C++ is to be able to use different data types to use the same methods despite having different starting data types.
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
-
+int* tenInts = new in[10];
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+the purpose of a deconstructor is to reallocate data that isnt going to be used anymore. Java doesnt need this because it has an automatic 'garbage collector' that does this job automaticly.
