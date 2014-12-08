@@ -39,9 +39,12 @@ void testAddRemove(ArrayQueue<int>& testQueue){
 //Test to see if your queue still works if we do add, remove, add, remove
 // many times
 void testAroundTheHorn(ArrayQueue<int>& testQueue){
+	//std::cout << "IM reall HERE" << std::endl;
 	for (int i = 0; i<1000; i++){
 		testQueue.add(i);
 		int t = testQueue.remove();
+		//std::cout << "IM HERE"<<t<<"!!" << std::endl;
+		//breaks when trying to access i or t
 		if (t != i){
 			std::cout << "ERROR: Added " << i << " but got back " << t << std::endl;
 			return;
@@ -52,8 +55,10 @@ void testAroundTheHorn(ArrayQueue<int>& testQueue){
 
 //Test to see if your queue can grow to handle lots of items
 void testGrow(ArrayQueue<int>& testQueue){
+
 	for (int i = 0; i<1000; i++){
 		testQueue.add(i);
+		std::cout << i << std::endl;
 	}
 
 	if (testQueue.getNumItems() != 1000){
@@ -92,11 +97,11 @@ void testRemoveException(ArrayQueue<int>& testQueue){
 //A simple main function which creates a queue, and tests it.
 int main(){
 	ArrayQueue<int> testQueue; 
-		//Ctor = constructor
-		testCtor(testQueue);
+	//Ctor = constructor
+	testCtor(testQueue);
 	testAddRemove(testQueue);
 	testAroundTheHorn(testQueue);
-	//testGrow(testQueue);
+	testGrow(testQueue);
 	testRemoveException(testQueue);
 
 	return 0;

@@ -35,9 +35,9 @@ private:
 	T* backingArray;
 
 	//The index in T where the front of the queue is.
-	unsigned long front;
+	unsigned long front=0;
 	//Number of items in the queue
-	unsigned long numItems;
+	unsigned long numItems=0;
 
 	//Number of spaces in the array pointed to by backingArray
 	unsigned long backingArraySize;
@@ -90,18 +90,8 @@ void ArrayQueue<T>::add(T toAdd){
 	}
 	numItems++;
 	
-	//make a new array and add the new items
-	T* myNewArray = new T[numItems];
-	myNewArray[numItems - 1] = toAdd;
-	//copy over old items
-	for (unsigned int i = 0; i<(numItems - 1); i++)
-	{
-		myNewArray[(i+front)%backingArraySize] = backingArray[(i+front)%backingArraySize];
-	}
-	//deletes the object array use delete when it isnt an array
-	delete[] backingArray;
-	backingArray = myNewArray;
-
+	//changed to be circular
+	backingArray[(numItems+front-1)%backingArraySize] = toAdd;
 }
 
 template <class T>
@@ -111,18 +101,9 @@ T ArrayQueue<T>::remove(){
 		throw std::string("Queue is already empty, attempted to remove.");
 		//this is caught by testRemoveException
 	}
-	//not final code
-	T retVal = backingArray[0];
+	T retVal = backingArray[front];
 	numItems--;
-	front++;
-	T* myNewArray = new T[numItems];
-	
-	for (int i = 0; i<numItems - 1; i++)
-	{
-		myNewArray[(i+front)%backingArraySize] = backingArray[(i + 1 + front)%backingArraySize];
-	}
-	delete[]backingArray;
-	backingArray = myNewArray;
+	front= (front+1)%backingArraySize;
 	return retVal;
 }
 
@@ -137,9 +118,22 @@ void ArrayQueue<T>::grow(){
 	if (backingArraySize == 0)
 	{
 		backingArray =  new T[START_SIZE];
+		backingArraySize = START_SIZE;
 	}
 	else
 	{
-		backingArray= new T[(backingArraySize + backingArraySize)];
+		//make a new array and add the new items
+		T* myNewArray = new T[backingArraySize*2];
+		//copy over old items
+		for (unsigned int i = 0; i<(numItems - 1); i++)
+		{
+			myNewArray[(i + front) % backingArraySize] = backingArray[(i + front) % backingArraySize];
+		}
+		//deletes the object array use delete when it isnt an array
+		delete[] backingArray;
+		backingArray = myNewArray;
+		backingArraySize = backingArraySize * 2;
+
+
 	}
 }
