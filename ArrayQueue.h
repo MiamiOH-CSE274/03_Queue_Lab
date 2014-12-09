@@ -4,7 +4,7 @@
 #include "Queue.h"
 
 template <class T>
-class ArrayQueue : public Queue <T> {
+class ArrayQueue : public Queue < T > {
 public:
 	//See Queue.h for documentation of these methods
 
@@ -70,51 +70,26 @@ private:
 // ArrayQueue<T> class.
 template <class T>
 ArrayQueue<T>::ArrayQueue(){
+	front = 0;
 	numItems = 0;
 	backingArray = new T[numItems];
+	backingArraySize = 10;
 }
 
 template <class T>
 ArrayQueue<T>::~ArrayQueue() {
-	//cleanup
 	delete[] backingArray;
 	backingArray = NULL;
 }
 
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
-	numItems++;
 	if (numItems == backingArraySize){
-		T* newArray = new T[];
 		grow();
-		newArray[numItems - 1] = toAdd;
-
-		//Copy old array into new array
-		for (unsigned int i = 0; i < numItems - 1; i++){
-			newArray[i] = backingArray[i];
-		}
-
-		//this is delete[], not delete
-		delete[] backingArray;
-
-		//Update pointer
-		backingArray = newArray;
 	}
-	else{
-		T* newArray = new T[numItems];
-		newArray[numItems - 1] = toAdd;
 
-		//Copy old array into new array
-		for (unsigned int i = 0; i < numItems - 1; i++){
-			newArray[i] = backingArray[i];
-		}
-
-		//this is delete[], not delete
-		delete[] backingArray;
-
-		//Update pointer
-		backingArray = newArray;
-	}
+	backingArray[(front+numItems)%backingArraySize] = toAdd;
+	numItems++;
 }
 
 template <class T>
@@ -122,21 +97,14 @@ T ArrayQueue<T>::remove(){
 	if (numItems < 1) {
 		throw std::string("Queue is already empty.");
 	}
-	
-	T* newArray = new T[numItems];
+	else{
+		T removed = backingArray[front];
 
-	T retVal = backingArray[0];
+		front = (front + 1) % backingArraySize;
+		numItems--;
 
-	for (unsigned int i = 0; i < numItems - 1; i++){
-		newArray[i] = backingArray[i + 1];
+		return removed;
 	}
-
-	delete[] backingArray;
-	backingArray = newArray;
-
-	numItems--;
-
-	return retVal;
 }
 
 template <class T>
@@ -146,14 +114,17 @@ unsigned long ArrayQueue<T>::getNumItems(){
 
 template <class T>
 void ArrayQueue<T>::grow(){
-	unsigned int size = numItems * 2;
+	unsigned int size = 2 * backingArraySize;
+
 	T* newArray = new T[size];
-	if (numItems == backingArraySize){
-		for (unsigned int i = 0; i < size; i++){
-			newArray[(front + numItems) % backingArraySize] = backingArray[i];
-		}
-		front = 0;
+
+	for (unsigned int i = 0; i < backingArraySize; i++){
+		newArray[i] = backingArray[(front + i) % backingArraySize];
+		
 	}
+	backingArraySize*=2;
+	front = 0;
+
 	delete[] backingArray;
 	backingArray = newArray;
 }
