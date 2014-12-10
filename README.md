@@ -28,23 +28,29 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. Remove takes O(1) time
+2. Add is O(1) unless grow is called
+3. Grow works as described and doubles array size.
+4. Grow takes O(n) time.
+5. Destructor code is from lecture so I it should work
+6. getNumItems is O(1) time
+7. Exceptions are thrown
+8. Array is circular 
 
 #### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+Everything but front should be kept. Stacks add to the front so having a variable for front is not needed. 
 
 #### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+The whole idea of circular arrays was confusing at first. I think it should be covered in the beggining as it seems like the key to the whole lab.
 
 #### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+: is used in C++ to mean the same thing as extends. ArrayQueue : Queue would be the way to write it in C++.
 
 #### 5. What is the purpose of "templates" in C++?
+Templates don't require you to specify the variable type. So the user can use any variable and the program finds and replaces all generic variables with the type specified by the user.
 
 #### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+In C++ , int* array = new int[10];
 
 #### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+The destructor is used to fix memory leaks and destroy objects in memory that are no longer in use. Java automatically frees up memory so delete and destructors aren't needed in Java.
