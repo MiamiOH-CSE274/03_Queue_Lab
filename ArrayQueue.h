@@ -89,11 +89,23 @@ ArrayQueue<T>::~ArrayQueue() {
 template <class T>
 void ArrayQueue<T>::add(T toAdd){
 
+<<<<<<< HEAD
 	//grow array if full
 	if (numItems == backingArraySize)
 	{
 		grow();
 	}
+=======
+	numItems++;
+//grow array if full
+if (numItems == backingArraySize)
+{
+grow();
+}
+
+//else add toAdd to the first available spot, modulo code from lecture
+backingArray[(front+numItems) % backingArraySize] = toAdd;
+>>>>>>> aa4e3b633e17dfab1ebc386ecb8bb12b0b9f5e2f
 
 	//else add toAdd to the first available spot, modulo code from lecture
 	backingArray[((front + numItems) % backingArraySize)] = toAdd;
