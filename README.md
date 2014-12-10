@@ -28,12 +28,12 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. I believe my remove takes O(1) time, but not 100% sure on the O(1) time stuff yet.
-2. I believe so.
+1. Remove takes O(1) time
+2. Add is O(1) unless grow is called
 3. Grow works as described and doubles array size.
-4. I believe grow takes O(n) time.
-5. Destructor code is from lecture so I believe it should work
-6. I believe getNumItems is O(1) time
+4. Grow takes O(n) time.
+5. Destructor code is from lecture so I it should work
+6. getNumItems is O(1) time
 7. Exceptions are thrown
 8. Array is circular 
 
