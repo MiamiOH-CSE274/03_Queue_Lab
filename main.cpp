@@ -1,3 +1,10 @@
+/* Author: Chris Mabe
+ * Date: 12/10/14
+ * This lab is about using Queues. I needed a little help from friends in my class
+ * but everything else was fairly self explanatory due to the reading.
+ */
+
+
 #include "ArrayQueue.h"
 #include <iostream>
 
