@@ -14,7 +14,7 @@ Requirements
 4. grow takes O(n) time
 5. Do not leak memory (make sure grow and the destructor do the right thing)
 6. getNumItems is O(1) time
-7. add and remove throw excpetions as appropriate
+7. add and remove throw exceptions as appropriate
 8. You must use the array in a circular fashion. If you don't do this you probably won't be able to get #1, #2 and #3 to all be true.
 
 Reading
@@ -28,23 +28,34 @@ Questions
 
 #### 1. Which of the above requirements work, and which do not? For each requirement, write a brief response.
 
-1. TODO
-2. TODO
-3. TODO
-4. TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
+1. Remove works correctly, returning the value that is specified.
+2. Add works the right way, adding to the array.
+3. Works. Doubles the size if and only if the number of items == backingArraySize.
+4. Working. Grow runs through the numbers from 0 to the size of the array.
+5. Check. Grows and deletes the array as necessary.
+6. Finished. Returns the value stored in the variable. (Easy)
+7. Complete. Exceptions are in place for both, and catch anything that is an error.
+8. Done. Used as a circular array.
 
-#### 2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
+2. If we did a Stack instead of a Queue, which of the private methods and variables would we need to keep, and which could we get rid of? Explain your answer.
 
-#### 3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
+	We would keep backingArray, backingArraySize, numItems, and grow(). You could get rid of front. The reason you wouldn't need front is because the thing that front represents is just the location of the first element of backingArray (or backingArray[0], for clarity's sake).
 
-#### 4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
+3. What is one question that confused you about this excercise, or one piece of advice you would share with students next semester?
 
-#### 5. What is the purpose of "templates" in C++?
+	I would suggest to take some time to understand how to make the conversion between the Java syntax, which we already know, to C++. It can be confusing, but all the same general logic is there. It's just different typing.
 
-#### 6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+4. In Java you might write "class ArrayQueue extends Queue" ... how do you write the same thing in C++?
 
-#### 7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+	If you wanted to do this in C++, you would put a ":" when you declare the ArrayQueue class.
+
+5. What is the purpose of "templates" in C++?
+
+	A template allows you to use the same functions with different types of data.
+
+6. What would the syntax be for dynamically allocating an array of 10 ints, in C++?
+	int* anArrayOfAwesomeness = new int [10];
+
+7. What is the purpose of a class destructor in C++? Why don't you need them in Java?
+
+	The purpose of the destructor is to free up the memory that has been allocated for the object. Java doesn't need this because you do not allocate memory, and thus are not required to free any up.
